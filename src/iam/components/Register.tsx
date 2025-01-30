@@ -12,7 +12,7 @@ export function Register() {
     }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+            <div className="bg-white p-12 rounded-2xl shadow-md w-1/2 max-w-2x1">
                 <div className="text-center mb-6">
 
                     <h1 className="text-2xl font-semibold text-blue-600">Bienvenido a VetCare</h1>
@@ -23,36 +23,58 @@ export function Register() {
                         <label htmlFor="user" className="block text-gray-700">
 
                         </label>
-                        <Box
+                        <Box className='grid grid-cols-2 gap-4'
                             component="form"
-                            sx={{ '& > :not(style)': { m: 1, width: '60 ch' } }}
+                            sx={{ '& .MuiTextField-root': { m: 1, width: '35ch' } }}
                             noValidate
                             autoComplete="off"
                         >
 
                             <TextField
-                                value={user.email}
-                                onChange={(e) => handleChange('email', e.target.value)}
-                                id="outlined-basic"
-                                label="Usuario"
-                                variant="outlined" />
-                        </Box>
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="password" className="block text-gray-700">
-
-                        </label>
-                        <Box
-                            component="form"
-                            sx={{ '& > :not(style)': { m: 1, width: '40 ch' } }}
-                            noValidate
-                            autoComplete="off"
-                        >
-
+                                required
+                                id="outlined-required"
+                                label="Nombre completo"
+                                defaultValue="Carlos Torres"
+                            />
                             <TextField
-                                value={user.password}
-                                onChange={(e) => handleChange('password', e.target.value)}
-                                id="outlined-basic" label="Contraseña" variant="outlined" type='password' />
+                                required
+                                id="outlined-required"
+                                label="Especialidad"
+                                defaultValue="Cirujano"
+                            />
+                            <TextField
+                                id="outlined-password-input"
+                                label="Contraseña"
+                                type="password"
+                                autoComplete="current-password"
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Correo electronico"
+                                defaultValue="carlostorres@gmail.com"
+                            />
+                            <TextField
+                                id="outlined-number"
+                                label="DNI"
+                                type="number"
+                                slotProps={{
+                                    inputLabel: {
+                                        shrink: true,
+                                    },
+                                }}
+                            />
+                            <TextField
+                                id="outlined-number"
+                                label="Numero de telefono"
+                                type="number"
+                                slotProps={{
+                                    inputLabel: {
+                                        shrink: true,
+                                    },
+                                }}
+                            />
+
                         </Box>
                     </div>
                     <div className="text-center">
