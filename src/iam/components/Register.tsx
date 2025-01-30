@@ -15,7 +15,7 @@ export function Register() {
             <div className="bg-white p-12 rounded-2xl shadow-md w-1/2 max-w-2x1">
                 <div className="text-center mb-6">
 
-                    <h1 className="text-2xl font-semibold text-blue-600">Bienvenido a VetCare</h1>
+                    <h1 className="text-2xl font-semibold" style={{ color: '#5E83AF' }}>Bienvenido a VetCare</h1>
                     <p className="text-gray-600 mt-2">complete sus datos</p>
                 </div>
                 <form onSubmit={register}>
@@ -31,30 +31,40 @@ export function Register() {
                         >
 
                             <TextField
+                                value={user.name}
+                                onChange={(e) => handleChange('name', e.target.value)}
                                 required
                                 id="outlined-required"
                                 label="Nombre completo"
-                                defaultValue="Carlos Torres"
+
                             />
                             <TextField
+                                value={user.speciality}
+                                onChange={(e) => handleChange('speciality', e.target.value)}
                                 required
                                 id="outlined-required"
                                 label="Especialidad"
-                                defaultValue="Cirujano"
+
                             />
                             <TextField
+                                value={user.password}
+                                onChange={(e) => handleChange('password', e.target.value)}
                                 id="outlined-password-input"
                                 label="Contraseña"
                                 type="password"
                                 autoComplete="current-password"
                             />
                             <TextField
+                                value={user.email}
+                                onChange={(e) => handleChange('email', e.target.value)}
                                 required
                                 id="outlined-required"
                                 label="Correo electronico"
-                                defaultValue="carlostorres@gmail.com"
+
                             />
                             <TextField
+                                value={user.dni}
+                                onChange={(e) => handleChange('dni', e.target.value)}
                                 id="outlined-number"
                                 label="DNI"
                                 type="number"
@@ -65,6 +75,8 @@ export function Register() {
                                 }}
                             />
                             <TextField
+                                value={user.phone}
+                                onChange={(e) => handleChange('phone', e.target.value)}
                                 id="outlined-number"
                                 label="Numero de telefono"
                                 type="number"
@@ -80,9 +92,10 @@ export function Register() {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+                            className="w-full text-white py-3 rounded-lg hover:opacity-80 transition"
+                            style={{ backgroundColor: '#486F9A' }}
                         >
-                            Create
+                            Crear Cuenta
                         </button>
                     </div>
                 </form>

@@ -5,7 +5,7 @@ import { User } from "../model/user";
 const api = new AuthApi();
 
 export function useSignUp() {
-    const [user, setUser] = useState<User>(new User({ email: '', password: '' }));
+    const [user, setUser] = useState<User>(new User());
 
     const handleChange = (name: keyof User, value: string) => {
         setUser((prevUser) => ({
@@ -17,7 +17,6 @@ export function useSignUp() {
     const handleSubmit = async () => {
         const response = await api.signUp(user);
         const token = response.data.token;
-
         if (token)
             localStorage.setItem("token", token);
     }

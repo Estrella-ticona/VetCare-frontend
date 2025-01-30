@@ -1,10 +1,13 @@
 export class User {
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
+    name?: string;
+    speciality?: string;
+    dni?: number;
+    phone?: number;
 
-    constructor({ email, password }: { email: string, password: string }) {
-        this.email = email;
-        this.password = password;
+    constructor(data: Partial<User> = {}) {
+        Object.assign(this, data);
     }
 
 }
