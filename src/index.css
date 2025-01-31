@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+    /* COLORES */
+    --color-azulito-900: #486f99;
+    --color-azulito-800: #5379a4;
+    --color-azulito-700: #5d83ae;
+    --color-azulito-600: #88a7d0;
+}
