@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AuthApi } from "../services/auth-service";
+import { AuthApi } from "../services/auth-api";
 import { User } from "../model/user";
 import { useNavigate } from "react-router";
 const api = new AuthApi();
@@ -20,7 +20,7 @@ export function useSignIn() {
 
         if (token) {
             localStorage.setItem("token", token);
-            navigate("/login");
+            navigate("/profile");
         }
 
     }

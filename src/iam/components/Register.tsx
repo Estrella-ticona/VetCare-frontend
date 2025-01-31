@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useSignUp } from '../hooks/useSignUp';
-
+import { Link } from 'react-router';
 
 export function Register() {
     const { user, handleChange, handleSubmit } = useSignUp();
@@ -47,14 +47,6 @@ export function Register() {
 
                             />
                             <TextField
-                                value={user.password}
-                                onChange={(e) => handleChange('password', e.target.value)}
-                                id="outlined-password-input"
-                                label="Contraseña"
-                                type="password"
-                                autoComplete="current-password"
-                            />
-                            <TextField
                                 value={user.email}
                                 onChange={(e) => handleChange('email', e.target.value)}
                                 required
@@ -62,6 +54,15 @@ export function Register() {
                                 label="Correo electronico"
 
                             />
+                            <TextField
+                                value={user.password}
+                                onChange={(e) => handleChange('password', e.target.value)}
+                                id="outlined-password-input"
+                                label="Contraseña"
+                                type="password"
+                                autoComplete="current-password"
+                            />
+
                             <TextField
                                 value={user.dni}
                                 onChange={(e) => handleChange('dni', e.target.value)}
@@ -100,7 +101,7 @@ export function Register() {
                     </div>
                 </form>
                 <p className="text-center mt-4 text-gray-600">
-                    Already have an account? <a href="/login" className="text-blue-600">Log in</a>
+                    Ya tienes una cuenta? <Link to="/login" className="text-blue-600">iniciar sesion</Link>
                 </p>
             </div>
         </div>

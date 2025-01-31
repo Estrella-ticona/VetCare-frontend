@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useSignIn } from '../hooks/useSignIn';
-
+import { Link } from 'react-router';
 export function Login() {
     const { user, handleChange, handleSubmit } = useSignIn();
 
@@ -74,9 +74,9 @@ export function Login() {
                 </form>
                 <p className="mt-4 text-center text-gray-700">
                     ¿No tienes cuenta?{' '}
-                    <a href="#" className="text-[#486F9A] hover:underline">
+                    <Link to="/register" className="text-[#486F9A] hover:underline">
                         Regístrate
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

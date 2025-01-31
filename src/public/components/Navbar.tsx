@@ -1,6 +1,11 @@
 import { HomeIcon } from "@heroicons/react/24/solid";
+//arrow-right-end-on-rectangle
+import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
+import { Button } from "@mui/material";
+import { useLogOut } from "../../iam/hooks/useLogOut";
 
 export function Navbar() {
+    const { handleLogOut } = useLogOut();
     return (
         <header className="bg-[#5E83AF] text-white w-full fixed top-0 z-50">
             <div className="flex items-center justify-between p-4 max-w-screen-xl mx-auto">
@@ -29,7 +34,7 @@ export function Navbar() {
                 </nav>
 
                 {/* Icono del menú */}
-                <div className="p-2 rounded-md bg-white text-[#486F9A]">
+                {/*   <div className="p-2 rounded-md bg-white text-[#486F9A]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -44,7 +49,14 @@ export function Navbar() {
                             d="M3 3h18M3 9h18M3 15h10.5"
                         />
                     </svg>
-                </div>
+                </div> */}
+
+                <Button className="" onClick={handleLogOut}>
+                    {/*  <ArrowRightEndOnRectangleIcon className="h- w-6 text-white" /> */}
+                    <div className="p-2 rounded-md bg-white text-[#486F9A]">
+                        <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
+                    </div>
+                </Button>
             </div>
         </header>
     );
