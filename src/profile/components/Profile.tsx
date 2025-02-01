@@ -76,8 +76,8 @@ export function Profile() {
                     <h2 className="text-sm uppercase text-gray-300">Contraseña</h2>
                     <TextField
                         className="text-lg font-medium"
-                        type="password"
-                        value={user.password}
+                        type="text"
+                        value={isEditing ? user.password || "" : "********"}
                         disabled={!isEditing}
                         onChange={(e) => handleChange("password", e.target.value)}
                         variant="standard"
