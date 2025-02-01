@@ -1,7 +1,7 @@
 
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
-import { useUpdateUser } from "../hooks/useUpdateUsers";
+import { useUpdateUser } from "../hooks/useUpdateUser";
 import TextField from '@mui/material/TextField';
 export function Profile() {
     const { user, handleChange, getUser, handleSubmit, isEditing, handleEditMode } = useUpdateUser();
@@ -14,10 +14,10 @@ export function Profile() {
             {!isEditing &&
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold">Datos personales</h1>
-                    <button className="flex items-center space-x-2 bg-white text-[#486F9A] py-2 px-4 rounded-full"
+                    <button className="hover:cursor-pointer flex items-center space-x-2 bg-white text-[#486F9A] py-2 px-4 rounded-full"
                         onClick={handleEditMode}>
                         <PencilIcon className="h-5 w-5" />
-                        <span>Editar datos {isEditing ? "v" : "f"}</span>
+                        <span>Editar datos</span>
                     </button>
                 </div>
             }
@@ -77,7 +77,7 @@ export function Profile() {
                     <TextField
                         className="text-lg font-medium"
                         type="password"
-                        value={isEditing ? user.password || "" : "********"}
+                        value={user.password}
                         disabled={!isEditing}
                         onChange={(e) => handleChange("password", e.target.value)}
                         variant="standard"
