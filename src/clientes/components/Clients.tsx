@@ -14,6 +14,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Button } from "@mui/material";
 import { PlusIcon } from "@heroicons/react/24/solid";
+
+
 interface Cliente {
     nombreCompleto: string;
     dni: string;
@@ -103,10 +105,12 @@ function Row(props: { row: Cliente }) {
                             </button>
                         </Box>
                     </Collapse>
+
                 </TableCell>
             </TableRow>
         </React.Fragment>
     );
+
 }
 
 const rows = [
@@ -122,31 +126,40 @@ const rows = [
 
 export function CollapsibleTable() {
     return (
-        <TableContainer component={Paper}>
-            <Table
-                className="bg-celeste-100"
-                sx={{
-                    minWidth: 650,
+        <>
+            <TableContainer component={Paper}>
+                <Table
+                    className="bg-celeste-100"
+                    sx={{
+                        minWidth: 650,
 
-                    /* " & .MuiTableCell-root": { borderBottom: "1px solid #a8d8ff" }, */
-                }}
-                aria-label="collapsible table"
-            >
-                <TableHead>
-                    <TableRow>
-                        <TableCell />
-                        <TableCell>Nombre Completo</TableCell>
-                        <TableCell>DNI</TableCell>
-                        <TableCell>Correo</TableCell>
-                        <TableCell>Celular</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row, index) => (
-                        <Row key={index} row={row} />
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                        " & .MuiTableCell-root": { borderBottom: "1px solid #c4d2e7" },
+                    }}
+                    aria-label="collapsible table"
+                >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell />
+                            <TableCell>Nombre Completo</TableCell>
+                            <TableCell>DNI</TableCell>
+                            <TableCell>Correo</TableCell>
+                            <TableCell>Celular</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row, index) => (
+                            <Row key={index} row={row} />
+                        ))}
+                    </TableBody>
+                </Table>
+
+            </TableContainer>
+
+            <button className="ml-auto hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
+                onClick={() => alert("Agregar nueva cliente")}>
+                <PlusIcon className="h-5 w-5" />
+                <span>Agregar Cliente</span>
+            </button>
+        </>
     );
 }
