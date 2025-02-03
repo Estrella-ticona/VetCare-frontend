@@ -1,8 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -11,11 +9,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import { useGetClients } from "../hooks/useGetClients";
 import { useState } from "react";
+import { useGetClients } from "../hooks/useGetClients";
 import { Client } from "../model/client";
 import { FormAddClient } from "./FormAddClient";
+import { PetsTable } from "./PetsTable";
 
 function Row({ client }: { client: Client }) {
     const [open, setOpen] = useState(false);
@@ -42,51 +40,8 @@ function Row({ client }: { client: Client }) {
                 <TableCell>{client.phone}</TableCell>
             </TableRow>
 
-            {/* mascotas */}
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 1 }}>
-                            <Typography variant="h6" gutterBottom component="div">
-                                Mascota
-                            </Typography>
-                            <Table size="small" aria-label="Mascota">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Nombre</TableCell>
-                                        <TableCell>Especie</TableCell>
-                                        <TableCell>Edad</TableCell>
-                                        <TableCell>Sexo</TableCell>
-                                        <TableCell>Fecha de Registro</TableCell>
-                                        <TableCell>Historial</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                {/* <TableBody>
-                                    {row.Mascotas.map((historyRow, index) => (
-                                        <TableRow key={index}>
-                                            <TableCell component="th" scope="row">
-                                                {historyRow.nombre}
-                                            </TableCell>
-                                            <TableCell>{historyRow.especie}</TableCell>
-                                            <TableCell>{historyRow.edad}</TableCell>
-                                            <TableCell>{historyRow.sexo}</TableCell>
-                                            <TableCell>{historyRow.fechaderegistro}</TableCell>
-                                            <TableCell>{historyRow.historial}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody> */}
-
-                            </Table>
-
-                            <button className="ml-auto hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
-                                onClick={() => alert("Agregar nueva mascota")}>
-                                <PlusIcon className="h-5 w-5" />
-                                <span>Agregar Mascota</span>
-                            </button>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-            </TableRow>
+            {/* informacion de las mascota */}
+            <PetsTable open={open} pets={client.pets!!} />
         </>
     );
 }
@@ -110,10 +65,10 @@ export function ClientsTable() {
                     <TableHead>
                         <TableRow>
                             <TableCell />
-                            <TableCell>Nombre Completo</TableCell>
-                            <TableCell>DNI</TableCell>
-                            <TableCell>Correo</TableCell>
-                            <TableCell>Celular</TableCell>
+                            <TableCell><span className="font-semibold">Nombre Completo</span></TableCell>
+                            <TableCell><span className="font-semibold">DNI</span></TableCell>
+                            <TableCell><span className="font-semibold">Correo</span></TableCell>
+                            <TableCell><span className="font-semibold">Celular</span></TableCell>
                         </TableRow>
                     </TableHead>
 
@@ -127,14 +82,13 @@ export function ClientsTable() {
 
             </TableContainer>
 
-            <button className="ml-auto hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
-                /* onClick={() => alert("Agregar nueva cliente")} */
+            <button className="ml-auto mt-10 hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
                 onClick={() => setOpen(!open)}>
                 <PlusIcon className="h-5 w-5" />
                 <span>Agregar Cliente</span>
             </button>
 
-            {open && <FormAddClient />}
+            <FormAddClient open={open} handleClose={() => setOpen(false)} />
         </>
     );
 }

@@ -7,10 +7,16 @@ const api = new ClientsApi();
 export function useCreateClient() {
     const [client, setClient] = useState<Client>(new Client());
 
+    const handleChange = (name: keyof Client, value: string) => {
+        setClient((prevClient) => ({
+            ...prevClient,
+            [name]: value,
+        }));
+    };
+
     const createClient = async () => {
-        const response = await api.getClients();
-        setClients(response.data);
+        await api.createClient(client);
     }
 
-    return { client, createClient, };
+    return { client, createClient, handleChange };
 }
