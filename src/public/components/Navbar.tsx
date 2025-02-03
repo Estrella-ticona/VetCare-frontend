@@ -3,33 +3,40 @@ import { HomeIcon } from "@heroicons/react/24/solid";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
 import { Button } from "@mui/material";
 import { useLogOut } from "../../iam/hooks/useLogOut";
-
+import { Link } from "react-router";
 export function Navbar() {
     const { handleLogOut } = useLogOut();
     return (
         <header className="bg-[#5E83AF] text-white w-full fixed top-0 z-50">
             <div className="flex items-center justify-between p-4 max-w-screen-xl mx-auto">
                 {/* Logo e Inicio */}
-                <div className="flex items-center">
+                <Link to="/profile" className=" flex items-center">
+
                     <div className="p-2 rounded-md bg-white text-[#486F9A]">
                         <HomeIcon className="h-5 w-5" />
                     </div>
-                    <span className="ml-3 font-semibold text-xl">Inicio</span>
-                </div>
+                    <span className=" ml-3 font-semibold  text-xl">Perfil</span>
+                </Link>
 
                 {/* Links de navegación */}
                 <nav className="flex space-x-6">
+                    <Link to="/clientes" className="hover:underline">
+                        Clientes
+                    </Link>
+                    <a href="#" className="hover:underline">
+                        Mascotas
+                    </a>
                     <a href="#" className="hover:underline">
                         Citas
                     </a>
                     <a href="#" className="hover:underline">
-                        Mascotas
+                        Historial
                     </a>
                     <a href="#" className="hover:underline">
                         Inventario
                     </a>
                     <a href="#" className="hover:underline">
-                        Estadística
+                        Estadistica
                     </a>
                 </nav>
 
@@ -58,6 +65,6 @@ export function Navbar() {
                     </div>
                 </Button>
             </div>
-        </header>
+        </header >
     );
 }
