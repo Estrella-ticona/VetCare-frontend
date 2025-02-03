@@ -1,7 +1,10 @@
-import * as React from "react";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,43 +12,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Button } from "@mui/material";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { useGetClients } from "../hooks/useGetClients";
+import { useState } from "react";
+import { Client } from "../model/client";
+import { FormAddClient } from "./FormAddClient";
 
-
-interface Cliente {
-    nombreCompleto: string;
-    dni: string;
-    correo: string;
-    celular: string;
-    Mascotas: {
-        nombre: string;
-        especie: string;
-        edad: string; sexo: string; fechaderegistro: string; historial: string;
-
-    }[];
-}
-
-function createData(
-    nombreCompleto: string,
-    dni: string,
-    correo: string,
-    celular: string,
-    Mascotas: { nombre: string; especie: string; edad: string; sexo: string; fechaderegistro: string; historial: string; }[]
-): Cliente {
-    return { nombreCompleto, dni, correo, celular, Mascotas: Mascotas };
-}
-
-function Row(props: { row: Cliente }) {
-    const { row } = props;
-    const [open, setOpen] = React.useState(false);
+function Row({ client }: { client: Client }) {
+    const [open, setOpen] = useState(false);
 
     return (
-        <React.Fragment>
+        <>
+            {/* informacion del cliente */}
             <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+                {/* boton expandir */}
                 <TableCell>
                     <IconButton
                         aria-label="expand row"
@@ -55,14 +34,15 @@ function Row(props: { row: Cliente }) {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell component="th" scope="row">
-                    {row.nombreCompleto}
-                </TableCell>
-                <TableCell>{row.dni}</TableCell>
-                <TableCell>{row.correo}</TableCell>
-                <TableCell>{row.celular}</TableCell>
+
+                {/* datos del cliente */}
+                <TableCell component="th" scope="row">{client.name}</TableCell>
+                <TableCell>{client.dni}</TableCell>
+                <TableCell>{client.email}</TableCell>
+                <TableCell>{client.phone}</TableCell>
             </TableRow>
 
+            {/* mascotas */}
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -81,7 +61,7 @@ function Row(props: { row: Cliente }) {
                                         <TableCell>Historial</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody>
+                                {/* <TableBody>
                                     {row.Mascotas.map((historyRow, index) => (
                                         <TableRow key={index}>
                                             <TableCell component="th" scope="row">
@@ -94,7 +74,7 @@ function Row(props: { row: Cliente }) {
                                             <TableCell>{historyRow.historial}</TableCell>
                                         </TableRow>
                                     ))}
-                                </TableBody>
+                                </TableBody> */}
 
                             </Table>
 
@@ -105,26 +85,15 @@ function Row(props: { row: Cliente }) {
                             </button>
                         </Box>
                     </Collapse>
-
                 </TableCell>
             </TableRow>
-        </React.Fragment>
+        </>
     );
-
 }
 
-const rows = [
-    createData("Fabricia Paty", "12345678", "fabricia@example.com", "95894262", [
-        { nombre: "2023-01-01", especie: "Cita médica" },
-        { nombre: "2023-02-15", especie: "Seguimiento" },
-    ]),
-    createData("Ana López", "87654321", "ana@example.com", "91234567", [
-        { nombre: "2023-03-10", especie: "Primera consulta" },
-        { nombre: "2023-04-20", especie: "Control anual" },
-    ]),
-];
-
-export function CollapsibleTable() {
+export function ClientsTable() {
+    const { clients } = useGetClients();
+    const [open, setOpen] = useState(false);
     return (
         <>
             <TableContainer component={Paper}>
@@ -137,6 +106,7 @@ export function CollapsibleTable() {
                     }}
                     aria-label="collapsible table"
                 >
+                    {/* titulos */}
                     <TableHead>
                         <TableRow>
                             <TableCell />
@@ -146,9 +116,11 @@ export function CollapsibleTable() {
                             <TableCell>Celular</TableCell>
                         </TableRow>
                     </TableHead>
+
+                    {/* contenido */}
                     <TableBody>
-                        {rows.map((row, index) => (
-                            <Row key={index} row={row} />
+                        {clients.map((client, index) => (
+                            <Row key={index} client={client} />
                         ))}
                     </TableBody>
                 </Table>
@@ -156,10 +128,13 @@ export function CollapsibleTable() {
             </TableContainer>
 
             <button className="ml-auto hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
-                onClick={() => alert("Agregar nueva cliente")}>
+                /* onClick={() => alert("Agregar nueva cliente")} */
+                onClick={() => setOpen(!open)}>
                 <PlusIcon className="h-5 w-5" />
                 <span>Agregar Cliente</span>
             </button>
+
+            {open && <FormAddClient />}
         </>
     );
 }
