@@ -12,5 +12,5 @@ export function useCreateClient() {
         setClients(response.data);
     }
 
-    return { client, createClient };
+    return { client, createClient, };
 }
