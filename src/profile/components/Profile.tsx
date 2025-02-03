@@ -10,12 +10,12 @@ export function Profile() {
     }, []);
 
     return (
-        <div className="bg-[#7398C4] text-white rounded-xl p-8 w-full max-w-4xl shadow-lg  " >
+        <div className="bg-celeste-500 text-white rounded-xl p-8 w-full max-w-4xl shadow-lg  " >
 
             <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold">Datos personales</h1>
                 {!isEditing &&
-                    <button className="hover:cursor-pointer flex items-center space-x-2 bg-white text-[#486F9A] py-2 px-4 rounded-full"
+                    <button className="hover:cursor-pointer flex items-center space-x-2 bg-white text-celeste-900 py-2 px-4 rounded-full"
                         onClick={handleEditMode}>
                         <PencilIcon className="h-5 w-5" />
                         <span>Editar datos</span>
@@ -90,7 +90,7 @@ export function Profile() {
 
             <div className="flex items-center justify-end">
                 {isEditing &&
-                    <div className="flex items-center space-x-2 bg-white text-[#486F9A] py-2 px-4 rounded-full"
+                    <div className="flex items-center space-x-2 bg-white text-celeste-900 py-2 px-4 rounded-full"
                     >
                         <PencilIcon className="h-5 w-5" />
                         <button onClick={handleSubmit} >GUARDAR</button>

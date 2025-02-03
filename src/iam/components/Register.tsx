@@ -15,7 +15,7 @@ export function Register() {
             <div className="bg-white p-12 rounded-2xl shadow-md w-1/2 max-w-2x1">
                 <div className="text-center mb-6">
 
-                    <h1 className="text-2xl font-semibold" style={{ color: '#5E83AF' }}>Bienvenido a VetCare</h1>
+                    <h1 className="text-2xl font-semibold text-celeste-700" >Bienvenido a VetCare</h1>
                     <p className="text-gray-600 mt-2">complete sus datos</p>
                 </div>
                 <form onSubmit={register}>
@@ -93,15 +93,14 @@ export function Register() {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="w-full text-white py-3 rounded-lg hover:opacity-80 transition"
-                            style={{ backgroundColor: '#486F9A' }}
+                            className="w-full text-white py-3 rounded-lg hover:opacity-80 transition bg-celeste-900"
                         >
                             Crear Cuenta
                         </button>
                     </div>
                 </form>
                 <p className="text-center mt-4 text-gray-600">
-                    Ya tienes una cuenta? <Link to="/login" className="text-blue-600">iniciar sesion</Link>
+                    Ya tienes una cuenta? <Link to="/login" className="text-celeste-900">iniciar sesion</Link>
                 </p>
             </div>
         </div>

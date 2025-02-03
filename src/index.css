@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-    /* COLORES */
-    --color-azulito-900: #486f99;
-    --color-azulito-800: #5379a4;
-    --color-azulito-700: #5d83ae;
-    --color-azulito-600: #88a7d0;
+
+    --color-celeste-100: #e2e8f3;
+    --color-celeste-200: #c4d2e7;
+    --color-celeste-300: #a6bddc;
+    --color-celeste-400: #88a7d0;
+    --color-celeste-500: #7398c4;
+    --color-celeste-600: #688db9;
+    --color-celeste-700: #5d83ae;
+    --color-celeste-800: #5379a4;
+    --color-celeste-900: #486f99;
+
+
+
 }

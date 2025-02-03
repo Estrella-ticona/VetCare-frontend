@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User } from "../../iam/model/user";
+import { User } from "@/iam/model/user";
 import { UserApi } from "../services/user-api";
 
 const api = new UserApi();

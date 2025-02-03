@@ -23,8 +23,8 @@ export function Login() {
             <div className="absolute inset-0 bg-black/30"></div>
 
             {/* Contenedor del formulario */}
-            <div className="relative w-full max-w-md bg-white/70 p-8 rounded-lg shadow-lg backdrop-blur-md">
-                <h1 className="text-2xl font-bold mb-6 text-center" style={{ color: '#486F9A' }}    >VetCare</h1>
+            <div className="relative w-full max-w-md bg-white/70 p-8 rounded-lg shadow-lg backdrop-blur-md ">
+                <h1 className="text-2xl font-bold mb-6 text-center text-celeste-900"    >VetCare</h1>
 
                 <form onSubmit={login}>
                     <div className="mb-4">
@@ -67,14 +67,14 @@ export function Login() {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#486F9A] text-white font-semibold py-2 rounded hover:opacity-80 transition"
+                        className="w-full bg-celeste-900 text-white font-semibold py-2 rounded hover:opacity-80 transition"
                     >
                         Iniciar sesión
                     </button>
                 </form>
                 <p className="mt-4 text-center text-gray-700">
                     ¿No tienes cuenta?{' '}
-                    <Link to="/register" className="text-[#486F9A] hover:underline">
+                    <Link to="/register" className="text-celeste-900 hover:underline">
                         Regístrate
                     </Link>
                 </p>
