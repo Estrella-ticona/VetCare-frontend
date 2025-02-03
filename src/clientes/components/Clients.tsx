@@ -42,9 +42,7 @@ function Row(props: { row: Cliente }) {
     const [open, setOpen] = React.useState(false);
 
     return (
-
         <React.Fragment>
-
             <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
                 <TableCell>
                     <IconButton
@@ -92,25 +90,21 @@ function Row(props: { row: Cliente }) {
                                             <TableCell>{historyRow.sexo}</TableCell>
                                             <TableCell>{historyRow.fechaderegistro}</TableCell>
                                             <TableCell>{historyRow.historial}</TableCell>
-
-
                                         </TableRow>
                                     ))}
-
                                 </TableBody>
-                                <button className="hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
-                                    onClick={() => alert("Agregar nueva mascota")}>
-                                    <PlusIcon className="h-5 w-5" />
-                                    <span>Agregar Mascota</span>
-                                </button>
+
                             </Table>
+
+                            <button className="ml-auto hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
+                                onClick={() => alert("Agregar nueva mascota")}>
+                                <PlusIcon className="h-5 w-5" />
+                                <span>Agregar Mascota</span>
+                            </button>
                         </Box>
                     </Collapse>
-
                 </TableCell>
-
             </TableRow>
-
         </React.Fragment>
     );
 }
@@ -134,7 +128,7 @@ export function CollapsibleTable() {
                 sx={{
                     minWidth: 650,
 
-                    " & .MuiTableCell-root": { borderBottom: "1px solid #a8d8ff" },
+                    /* " & .MuiTableCell-root": { borderBottom: "1px solid #a8d8ff" }, */
                 }}
                 aria-label="collapsible table"
             >
