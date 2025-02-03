@@ -12,7 +12,8 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
+import { Button } from "@mui/material";
+import { PlusIcon } from "@heroicons/react/24/solid";
 interface Cliente {
     nombreCompleto: string;
     dni: string;
@@ -41,7 +42,9 @@ function Row(props: { row: Cliente }) {
     const [open, setOpen] = React.useState(false);
 
     return (
+
         <React.Fragment>
+
             <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
                 <TableCell>
                     <IconButton
@@ -59,6 +62,7 @@ function Row(props: { row: Cliente }) {
                 <TableCell>{row.correo}</TableCell>
                 <TableCell>{row.celular}</TableCell>
             </TableRow>
+
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -89,14 +93,24 @@ function Row(props: { row: Cliente }) {
                                             <TableCell>{historyRow.fechaderegistro}</TableCell>
                                             <TableCell>{historyRow.historial}</TableCell>
 
+
                                         </TableRow>
                                     ))}
+
                                 </TableBody>
+                                <button className="hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
+                                    onClick={() => alert("Agregar nueva mascota")}>
+                                    <PlusIcon className="h-5 w-5" />
+                                    <span>Agregar Mascota</span>
+                                </button>
                             </Table>
                         </Box>
                     </Collapse>
+
                 </TableCell>
+
             </TableRow>
+
         </React.Fragment>
     );
 }
