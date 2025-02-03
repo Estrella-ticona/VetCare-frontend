@@ -10,12 +10,11 @@ export function FormAddClient() {
         await createClient();
     }
     return (
-        <div className="bg-celeste-500 text-white rounded-xl p-8 w-full max-w-4xl shadow-lg  " >
+        <div className="bg-celeste-300 text-white rounded-xl p-8 w-full max-w-4xl shadow-lg  " >
             <form onSubmit={formaddclient}>
                 <div className="mb-4">
-                    <label htmlFor="client" className="block text-gray-700">
 
-                    </label>
+
                     <Box className='grid grid-cols-2 gap-4'
                         component="form"
                         sx={{ '& .MuiTextField-root': { m: 1, width: '35ch' } }}
@@ -44,6 +43,7 @@ export function FormAddClient() {
                         />
 
                     </Box>
+
                 </div>
                 <div className="flex items-center justify-end">
                     {

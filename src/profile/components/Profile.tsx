@@ -3,6 +3,8 @@ import { PencilIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 import TextField from '@mui/material/TextField';
+import { CheckIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 export function Profile() {
     const { user, handleChange, getUser, handleSubmit, isEditing, handleEditMode } = useUpdateUser();
     useEffect(() => {
@@ -92,13 +94,9 @@ export function Profile() {
                 {isEditing &&
                     <div className="flex items-center space-x-2 bg-white text-celeste-900 py-2 px-4 rounded-full"
                     >
-                        <PencilIcon className="h-5 w-5" />
-                        <button onClick={handleSubmit} >GUARDAR</button>
-                        <button onClick={handleEditMode}>SALIR </button>
 
-
-
-
+                        <button onClick={handleSubmit} ><CheckIcon className="h-5 w-5" /></button>
+                        <button onClick={handleEditMode}> <XMarkIcon className="h-5 w-5" /> </button>
 
                     </div>
                 }
