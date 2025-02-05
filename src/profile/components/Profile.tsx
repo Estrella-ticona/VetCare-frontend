@@ -12,7 +12,7 @@ export function Profile() {
     }, []);
 
     return (
-        <div className="bg-celeste-500 text-white rounded-xl p-8 w-full max-w-4xl shadow-lg  " >
+        <div className="bg-celeste-500 text-white rounded-xl p-8 w-full max-w-4xl shadow-lg mx-auto mt-40" >
 
             <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold">Datos personales</h1>

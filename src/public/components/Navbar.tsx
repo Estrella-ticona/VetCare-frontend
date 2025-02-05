@@ -7,7 +7,7 @@ import { Link } from "react-router";
 export function Navbar() {
     const { handleLogOut } = useLogOut();
     return (
-        <header className="bg-[#5E83AF] text-white w-full fixed top-0 z-50">
+        <header className="bg-[#5E83AF] text-white w-full mb-auto">
             <div className="flex items-center justify-between p-4 max-w-screen-xl mx-auto">
                 {/* Logo e Inicio */}
                 <Link to="/profile" className=" flex items-center">
@@ -26,9 +26,9 @@ export function Navbar() {
                     <a href="#" className="hover:underline">
                         Mascotas
                     </a>
-                    <a href="#" className="hover:underline">
+                    <Link to="/citas" className="hover:underline">
                         Citas
-                    </a>
+                    </Link>
                     <a href="#" className="hover:underline">
                         Historial
                     </a>

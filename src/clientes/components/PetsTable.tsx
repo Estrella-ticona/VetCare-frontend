@@ -1,23 +1,24 @@
 import { PlusIcon } from "@heroicons/react/24/solid"
 import { TableRow, TableCell, Collapse, Box, Typography, Table, TableHead, TableBody } from "@mui/material"
+import { Pet } from "../model/pet";
 
-function Row({ pet }: { pet: any }) {
+
+function Row({ pet }: { pet: Pet }) {
     return (
         <TableRow>
             <TableCell component="th" scope="row">
-                {pet.nombre}
+                {pet.name}
             </TableCell>
-            <TableCell>{pet.especie}</TableCell>
-            <TableCell>{pet.edad}</TableCell>
-            <TableCell>{pet.sexo}</TableCell>
+            <TableCell>{pet.age}</TableCell>
+            <TableCell>{pet.gender}</TableCell>
+            {/* <TableCell>{pet.specie}</TableCell>
             <TableCell>{pet.fechaderegistro}</TableCell>
-            <TableCell>{pet.historial}</TableCell>
+            <TableCell>{pet.historial}</TableCell> */}
         </TableRow>
     )
 }
 
-export function PetsTable({ open, pets }: { open: boolean, pets: any[] }) {
-    const historyRows = Array.from({ length: 5 }, (i) => (undefined));
+export function PetsTable({ open, pets }: { open: boolean, pets: Pet[] }) {
 
     return (
         <TableRow >
@@ -34,21 +35,22 @@ export function PetsTable({ open, pets }: { open: boolean, pets: any[] }) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Nombre</TableCell>
-                                    <TableCell>Especie</TableCell>
+                                    {/* <TableCell>Especie</TableCell> */}
                                     <TableCell>Edad</TableCell>
                                     <TableCell>Sexo</TableCell>
-                                    <TableCell>Fecha de Registro</TableCell>
-                                    <TableCell>Historial</TableCell>
+
+                                    {/* <TableCell>Fecha de Registro</TableCell>
+                                    <TableCell>Historial</TableCell> */}
                                 </TableRow>
                             </TableHead>
 
                             {/* contenido */}
                             <TableBody>
-                                {/* {
+                                {
                                     pets.map((pet, index) => (
                                         <Row key={index} pet={pet} />
                                     ))
-                                } */}
+                                }
                             </TableBody>
                         </Table>
 
@@ -57,6 +59,7 @@ export function PetsTable({ open, pets }: { open: boolean, pets: any[] }) {
                             <PlusIcon className="h-5 w-5" />
                             <span>Agregar Mascota</span>
                         </button>
+
                     </Box>
                 </Collapse>
             </TableCell>

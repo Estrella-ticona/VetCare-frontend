@@ -3,9 +3,11 @@ import { Navbar } from "../components/Navbar";
 
 export function MainLayout() {
     return (
-        <div className="min-h-screen bg-celeste-200 flex flex-col items-center justify-center">
+        <div className="min-h-screen bg-celeste-200  ">
             <Navbar />
-            <Outlet />
+            <div className=" mt-15 ">
+                <Outlet />
+            </div>
         </div>
     );
 }

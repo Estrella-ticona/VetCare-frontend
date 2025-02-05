@@ -9,8 +9,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { useState } from "react";
-import { useGetClients } from "../hooks/useGetClients";
+import { useContext, useState } from "react";
+import { ClientsContext } from "../contexts/clients-context";
 import { Client } from "../model/client";
 import { FormAddClient } from "./FormAddClient";
 import { PetsTable } from "./PetsTable";
@@ -41,19 +41,26 @@ function Row({ client }: { client: Client }) {
             </TableRow>
 
             {/* informacion de las mascota */}
-            <PetsTable open={open} pets={client.pets!!} />
+            {
+                client.pets &&
+                <PetsTable open={open} pets={client.pets} />
+            }
+
+
         </>
     );
 }
 
 export function ClientsTable() {
-    const { clients } = useGetClients();
+    //    const { clients } = useGetClients();
+    const { clients } = useContext(ClientsContext);
+
     const [open, setOpen] = useState(false);
     return (
         <>
             <TableContainer component={Paper}>
                 <Table
-                    className="bg-celeste-100"
+                    className="bg-celeste-100 block"
                     sx={{
                         minWidth: 650,
 
