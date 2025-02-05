@@ -96,6 +96,8 @@ export function ClientsTable() {
             </button>
 
             <FormAddClient open={open} handleClose={() => setOpen(false)} />
+
+
         </>
     );
 }

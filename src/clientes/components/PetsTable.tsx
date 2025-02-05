@@ -1,6 +1,8 @@
 import { PlusIcon } from "@heroicons/react/24/solid"
 import { TableRow, TableCell, Collapse, Box, Typography, Table, TableHead, TableBody } from "@mui/material"
 import { Pet } from "../model/pet";
+import { FormAddPet } from "./FormAddPet";
+import { useState } from "react";
 
 
 function Row({ pet }: { pet: Pet }) {
@@ -19,7 +21,7 @@ function Row({ pet }: { pet: Pet }) {
 }
 
 export function PetsTable({ open, pets }: { open: boolean, pets: Pet[] }) {
-
+    const [openform, setOpenform] = useState(false);
     return (
         <TableRow >
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -55,10 +57,11 @@ export function PetsTable({ open, pets }: { open: boolean, pets: Pet[] }) {
                         </Table>
 
                         <button className="ml-auto mt-10 hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
-                            onClick={() => alert("Agregar nueva mascota")}>
+                            onClick={() => setOpenform(!openform)}>
                             <PlusIcon className="h-5 w-5" />
                             <span>Agregar Mascota</span>
                         </button>
+                        <FormAddPet open={openform} handleClose={() => setOpenform(false)} />
 
                     </Box>
                 </Collapse>

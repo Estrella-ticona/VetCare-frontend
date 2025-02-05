@@ -8,14 +8,14 @@ import { ClientsContext } from "../contexts/clients-context";
 export function FormAddPet({ open, handleClose, }: { open: boolean, handleClose: () => void }) {
 
     /* TODO ESTO SE DEBE DE CAMBIAR A PET */
-    const { clients, setClients, createClient, clearClient: clearPet, handleChange, client: pet } = useContext(ClientsContext);
+    const { clearPet, handleChangePet, pet, createPet } = useContext(ClientsContext);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         handleClose();
-        clients.push(pet);
-        setClients(clients);
-        await createClient();
+        /* pet.push(pet); */
+
+        await createPet();
     }
 
     return (
@@ -35,7 +35,7 @@ export function FormAddPet({ open, handleClose, }: { open: boolean, handleClose:
                                 label="Nombres completos"
                                 className="bg-celeste-100"
                                 value={pet.name}
-                                onChange={(e) => handleChange("name", e.target.value)}
+                                onChange={(e) => handleChangePet("name", e.target.value)}
                             />
                             <TextField
                                 required
@@ -43,7 +43,7 @@ export function FormAddPet({ open, handleClose, }: { open: boolean, handleClose:
                                 label="genero"
                                 className="bg-celeste-100"
                                 value={pet.gender}
-                                onChange={(e) => handleChange("gender", e.target.value)}
+                                onChange={(e) => handleChangePet("gender", e.target.value)}
                             />
                             <TextField
                                 required
@@ -51,7 +51,7 @@ export function FormAddPet({ open, handleClose, }: { open: boolean, handleClose:
                                 label=" edad"
                                 className="bg-celeste-100"
                                 value={pet.age}
-                                onChange={(e) => handleChange("age", e.target.value)}
+                                onChange={(e) => handleChangePet("age", e.target.value)}
                             />
                         </Box>
                     </div>
