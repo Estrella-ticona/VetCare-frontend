@@ -6,7 +6,7 @@ import { useCreatePet } from "../hooks/useCreatePets";
 import { useDeletePet } from "../hooks/useDeletePet";
 
 export function ClientsContextProvider({ children }: { children: ReactNode }) {
-    const { clients, setClients, getClients } = useGetClients();
+    const { clients, setClients, getClients, loadingclient } = useGetClients();
     const { client, setClient, clearClient, createClient, handleChangeClient } = useCreateClient();
     const { pet, handleChangePet, clearPet, createPet, } = useCreatePet();
     const { deletePet } = useDeletePet();
@@ -16,6 +16,7 @@ export function ClientsContextProvider({ children }: { children: ReactNode }) {
         clients,
         setClients,
         getClients,
+        loadingclient,
         client,
         setClient,
         clearClient,

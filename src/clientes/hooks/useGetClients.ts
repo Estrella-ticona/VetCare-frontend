@@ -8,7 +8,7 @@ const api2 = new PetsApi();
 
 export function useGetClients() {
     const [clients, setClients] = useState<Client[]>([]);
-
+    const [loadingclient, setloadingclient] = useState(true);
     useEffect(() => {
         const fetchClientsWithPets = async () => {
             try {
@@ -25,9 +25,11 @@ export function useGetClients() {
                 );
 
                 setClients(clientsWithPets);
+                setloadingclient(false);
             } catch (error) {
                 console.error("Error fetching clients or pets:", error);
             }
+
         };
 
         fetchClientsWithPets();
@@ -43,5 +45,5 @@ export function useGetClients() {
         return response.data;
     };
 
-    return { clients, setClients, getClients };
+    return { clients, setClients, getClients, loadingclient };
 }

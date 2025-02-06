@@ -6,6 +6,8 @@ export type ClientsContextType = {
     clients: Client[];
     setClients: (clients: Client[]) => void;
     getClients: () => Promise<void>;
+    loadingclient: boolean;
+
 
     /*UseCreate pet */
     pet: Pet;
@@ -30,6 +32,7 @@ export const ClientsContext = createContext<ClientsContextType>({
     clients: [],
     setClients: () => { },
     getClients: async () => { },
+    loadingclient: true,
 
     pet: new Pet(),
     handleChangePet: () => { },

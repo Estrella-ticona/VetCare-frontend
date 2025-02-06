@@ -14,6 +14,7 @@ import { ClientsContext } from "../contexts/clients-context";
 import { Client } from "../model/client";
 import { FormAddClient } from "./FormAddClient";
 import { PetsTable } from "./PetsTable";
+import { Skeleton } from "@mui/material";
 
 function Row({ client }: { client: Client }) {
     const [open, setOpen] = useState(false);
@@ -54,9 +55,10 @@ function Row({ client }: { client: Client }) {
 
 export function ClientsTable() {
     //    const { clients } = useGetClients();
-    const { clients } = useContext(ClientsContext);
+    const { clients, loadingclient } = useContext(ClientsContext);
 
     const [open, setOpen] = useState(false);
+
     return (
         <>
             <TableContainer component={Paper}>
@@ -81,10 +83,23 @@ export function ClientsTable() {
                     </TableHead>
 
                     {/* contenido */}
+
                     <TableBody>
-                        {clients.map((client, index) => (
-                            <Row key={index} client={client} />
-                        ))}
+                        {loadingclient ? (
+                            // Si está cargando, mostrar varias filas de Skeleton
+                            [...Array(2)].map((_, index) => (
+                                <TableRow key={index}>
+                                    <TableCell colSpan={5}>
+                                        <Skeleton variant="rectangular" width="100%" height={60} className="bg-gray-300" />
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            // Si ya cargaron los datos, mostrar los clientes
+                            clients.map((client, index) => (
+                                <Row key={index} client={client} />
+                            ))
+                        )}
                     </TableBody>
                 </Table>
 
