@@ -42,8 +42,9 @@ function Row({ client }: { client: Client }) {
 
             {/* informacion de las mascota */}
             {
-                client.pets &&
-                <PetsTable open={open} pets={client.pets} />
+                client.pets && client.id &&
+                <PetsTable open={open} pets={client.pets} clientId={client.id} />
+
             }
 
 

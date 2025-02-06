@@ -1,4 +1,5 @@
 export class Pet {
+    clientId?: number;
     name?: string;
     gender?: string;
     age?: number;

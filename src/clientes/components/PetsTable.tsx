@@ -20,7 +20,7 @@ function Row({ pet }: { pet: Pet }) {
     )
 }
 
-export function PetsTable({ open, pets }: { open: boolean, pets: Pet[] }) {
+export function PetsTable({ open, pets, clientId }: { open: boolean, pets: Pet[], clientId: number }) {
     const [openform, setOpenform] = useState(false);
     return (
         <TableRow >
@@ -61,7 +61,7 @@ export function PetsTable({ open, pets }: { open: boolean, pets: Pet[] }) {
                             <PlusIcon className="h-5 w-5" />
                             <span>Agregar Mascota</span>
                         </button>
-                        <FormAddPet open={openform} handleClose={() => setOpenform(false)} />
+                        <FormAddPet open={openform} clientId={clientId} handleClose={() => setOpenform(false)} />
 
                     </Box>
                 </Collapse>

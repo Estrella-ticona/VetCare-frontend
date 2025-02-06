@@ -19,7 +19,8 @@ export function useCreatePet() {
         setPet(new Pet());
     }
 
-    const createPet = async () => {
+    const createPet = async (clientId: number) => {
+        pet.clientId = clientId;
         await api2.createPets(pet);
         clearPet();
     }

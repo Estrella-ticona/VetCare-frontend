@@ -23,8 +23,8 @@ export function Login() {
             <div className="absolute inset-0 bg-black/30"></div>
 
             {/* Contenedor del formulario */}
-            <div className="relative w-full max-w-md bg-white/70 p-8 rounded-lg shadow-lg backdrop-blur-md ">
-                <h1 className="text-2xl font-bold mb-6 text-center text-celeste-900"    >VetCare</h1>
+            <div className="relative w-full max-w-md bg-white/10 p-8 rounded-2xl shadow-lg backdrop-blur-sm ">
+                <h1 className="text-2xl font-bold mb-6 text-center text-white    shadow-2xl"    >VetCare</h1>
 
                 <form onSubmit={login}>
                     <div className="mb-4">

@@ -11,7 +11,7 @@ export type ClientsContextType = {
     pet: Pet;
     handleChangePet: (name: keyof Pet, value: string) => void;
     clearPet: () => void;
-    createPet: () => Promise<void>;
+    createPet: (clientId: number) => Promise<void>;
 
 
 
