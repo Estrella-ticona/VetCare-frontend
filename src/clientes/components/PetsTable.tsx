@@ -5,7 +5,7 @@ import { FormAddPet } from "./FormAddPet";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../contexts/clients-context";
 import { Client } from "../model/client";
-
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 function Row({ pet }: { pet: Pet }) {
 
@@ -38,7 +38,7 @@ function Row({ pet }: { pet: Pet }) {
             <TableCell>{pet.specie}</TableCell>
             <TableCell>{pet.gender} </TableCell>
             <TableCell>{pet.register}</TableCell>
-            <TableCell> <button className="  hover:cursor-pointer  bg-red-600 text-celeste-100 py-2 px-4 rounded-full" onClick={handleDelete}> eliminar</button></TableCell>
+            <TableCell> <button className="  hover:cursor-pointer  bg-red-500 text-celeste-100 py-2 px-4 rounded-full" onClick={handleDelete}> <TrashIcon className="h-5 w-5" /></button></TableCell>
 
 
             {/* <TableCell>{pet.specie}</TableCell>
