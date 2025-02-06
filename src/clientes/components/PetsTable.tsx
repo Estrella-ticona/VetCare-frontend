@@ -2,19 +2,48 @@ import { PlusIcon } from "@heroicons/react/24/solid"
 import { TableRow, TableCell, Collapse, Box, Typography, Table, TableHead, TableBody } from "@mui/material"
 import { Pet } from "../model/pet";
 import { FormAddPet } from "./FormAddPet";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClientsContext } from "../contexts/clients-context";
+import { Client } from "../model/client";
 
 
 function Row({ pet }: { pet: Pet }) {
+
+    const { deletePet, clients, setClients } = useContext(ClientsContext);
+
+    const handleDelete = async () => {
+        // Crear una nueva copia del array de clientes
+        const updatedClients = clients.map((client: Client) => {
+            if (client.id === pet.clientId && client.pets) {
+                return {
+                    ...client,
+                    pets: client.pets.filter((p: Pet) => p.id !== pet.id), // Eliminar la mascota
+                };
+            }
+            return client;
+        });
+
+        // Actualizar el estado global de clients
+        setClients(updatedClients);
+
+        // Eliminar la mascota del backend (si aplica)
+        await deletePet(pet);
+    };
     return (
         <TableRow>
             <TableCell component="th" scope="row">
                 {pet.name}
             </TableCell>
             <TableCell>{pet.age}</TableCell>
-            <TableCell>{pet.gender}</TableCell>
+            <TableCell>{pet.specie}</TableCell>
+            <TableCell>{pet.gender} </TableCell>
+            <TableCell>{pet.register}</TableCell>
+            <TableCell> <button className="  hover:cursor-pointer  bg-red-600 text-celeste-100 py-2 px-4 rounded-full" onClick={handleDelete}> eliminar</button></TableCell>
+
+
             {/* <TableCell>{pet.specie}</TableCell>
             <TableCell>{pet.fechaderegistro}</TableCell>
+            
             <TableCell>{pet.historial}</TableCell> */}
         </TableRow>
     )
@@ -37,24 +66,31 @@ export function PetsTable({ open, pets, clientId }: { open: boolean, pets: Pet[]
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Nombre</TableCell>
-                                    {/* <TableCell>Especie</TableCell> */}
                                     <TableCell>Edad</TableCell>
+                                    <TableCell>Especie</TableCell>
                                     <TableCell>Sexo</TableCell>
+                                    <TableCell>Fecha de Registro</TableCell>
 
                                     {/* <TableCell>Fecha de Registro</TableCell>
                                     <TableCell>Historial</TableCell> */}
                                 </TableRow>
+
                             </TableHead>
 
                             {/* contenido */}
                             <TableBody>
+
                                 {
                                     pets.map((pet, index) => (
                                         <Row key={index} pet={pet} />
+
                                     ))
                                 }
+
                             </TableBody>
+
                         </Table>
+
 
                         <button className="ml-auto mt-10 hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
                             onClick={() => setOpenform(!openform)}>

@@ -46,14 +46,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                                 value={pet.name}
                                 onChange={(e) => handleChangePet("name", e.target.value)}
                             />
-                            <TextField
-                                required
-                                id="outlined-required"
-                                label="genero"
-                                className="bg-celeste-100"
-                                value={pet.gender}
-                                onChange={(e) => handleChangePet("gender", e.target.value.toUpperCase())}
-                            />
+
                             <TextField
                                 required
                                 id="outlined-required"
@@ -61,6 +54,22 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                                 className="bg-celeste-100"
                                 value={pet.age}
                                 onChange={(e) => handleChangePet("age", e.target.value)}
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="especie"
+                                className="bg-celeste-100"
+                                value={pet.specie}
+                                onChange={(e) => handleChangePet("specie", e.target.value)}
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="genero"
+                                className="bg-celeste-100"
+                                value={pet.gender}
+                                onChange={(e) => handleChangePet("gender", e.target.value.toUpperCase())}
                             />
 
                         </Box>

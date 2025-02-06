@@ -3,11 +3,14 @@ import { ClientsContext, ClientsContextType } from "./clients-context";
 import { useGetClients } from "../hooks/useGetClients";
 import { useCreateClient } from "../hooks/useCreateClient"
 import { useCreatePet } from "../hooks/useCreatePets";
+import { useDeletePet } from "../hooks/useDeletePet";
 
 export function ClientsContextProvider({ children }: { children: ReactNode }) {
     const { clients, setClients, getClients } = useGetClients();
     const { client, setClient, clearClient, createClient, handleChangeClient } = useCreateClient();
-    const { pet, handleChangePet, clearPet, createPet } = useCreatePet();
+    const { pet, handleChangePet, clearPet, createPet, } = useCreatePet();
+    const { deletePet } = useDeletePet();
+
 
     const ClientsContextValue: ClientsContextType = {
         clients,
@@ -22,6 +25,7 @@ export function ClientsContextProvider({ children }: { children: ReactNode }) {
         handleChangePet,
         clearPet,
         createPet,
+        deletePet
 
 
     }

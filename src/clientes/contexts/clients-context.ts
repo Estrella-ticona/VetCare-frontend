@@ -12,6 +12,7 @@ export type ClientsContextType = {
     handleChangePet: (name: keyof Pet, value: string) => void;
     clearPet: () => void;
     createPet: (clientId: number) => Promise<void>;
+    deletePet: (pet: Pet) => Promise<void>;
 
 
 
@@ -34,6 +35,7 @@ export const ClientsContext = createContext<ClientsContextType>({
     handleChangePet: () => { },
     clearPet: () => { },
     createPet: async () => { },
+    deletePet: async () => { },
 
     client: new Client(),
     setClient: () => { },
