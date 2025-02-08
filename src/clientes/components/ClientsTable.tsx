@@ -86,16 +86,13 @@ export function ClientsTable() {
 
                     <TableBody>
                         {loadingclient ? (
-                            // Si está cargando, mostrar varias filas de Skeleton
-                            [...Array(2)].map((_, index) => (
-                                <TableRow key={index}>
-                                    <TableCell colSpan={5}>
-                                        <Skeleton variant="rectangular" width="100%" height={60} className="bg-gray-300" />
+                            Array.from(new Array(5)).map((_) => (
+                                <TableRow>
+                                    <TableCell colSpan={5} style={{ padding: "4px 0" }}>
+                                        <Skeleton variant="rectangular" height={50} width="100%" />
                                     </TableCell>
-                                </TableRow>
-                            ))
-                        ) : (
-                            // Si ya cargaron los datos, mostrar los clientes
+                                </TableRow>)
+                            )) : (
                             clients.map((client, index) => (
                                 <Row key={index} client={client} />
                             ))
