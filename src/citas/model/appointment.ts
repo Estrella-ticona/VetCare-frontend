@@ -1,9 +1,10 @@
-
+import { Pet } from '@/clientes/model/pet';
 export class Appointment {
     id?: number;
     petid?: number;
     reason?: string;
-    localdatetime?: string;
+    date?: string;
+    pet?: Pet;
 
 
     constructor(data: Partial<Appointment> = {}) {

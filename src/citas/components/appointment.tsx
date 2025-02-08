@@ -8,38 +8,22 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { PlusIcon } from '@heroicons/react/24/solid';
+import { Appointment } from '../model/appointment';
 
+function Row({ appointment }: { appointment: Appointment }) {
+    return (
+        <TableRow>
 
-interface cita {
-    nombre: string;
-    especie: string;
-    genero: string;
-    fechahora: Date;
-    motivo: string;
+            <TableCell component="th" scope="row">{appointment.pet!!.name}</TableCell>
+            <TableCell>{appointment.pet!!.specie!!}</TableCell>
+            <TableCell>{appointment.pet!!.gender}</TableCell>
+            <TableCell>{appointment.date}</TableCell>
+            <TableCell>{appointment.reason}</TableCell>
+
+        </TableRow>
+    );
 }
 
-function createData(
-    nombre: string,
-    especie: string,
-    genero: string,
-    fechahora: Date,
-    motivo: string
-): cita {
-    return { nombre, especie, genero, fechahora, motivo };
-}
-
-const rows = [
-    createData('Firulais', 'Perro', 'Macho', new Date('2024-10-05T10:00:00'), 'Vacunación anual'),
-    createData('Michi', 'Gato', 'Hembra', new Date('2024-10-06T15:30:00'), 'Chequeo general'),
-    createData('Toby', 'Perro', 'Macho', new Date('2024-10-07T09:00:00'), 'Dolor en la pata trasera'),
-    createData('Luna', 'Gato', 'Hembra', new Date('2024-10-08T11:45:00'), 'Esterilización'),
-    createData('Nemo', 'Pez', 'Desconocido', new Date('2024-10-09T14:00:00'), 'Cambio de pecera'),
-    createData('Rocky', 'Perro', 'Macho', new Date('2024-10-10T16:00:00'), 'Desparasitación'),
-    createData('Pelusa', 'Conejo', 'Hembra', new Date('2024-10-11T12:30:00'), 'Revisión de dientes'),
-    createData('Kira', 'Gato', 'Hembra', new Date('2024-10-12T10:15:00'), 'Vacunación contra rabia'),
-    createData('Max', 'Perro', 'Macho', new Date('2024-10-13T13:00:00'), 'Chequeo preoperatorio'),
-    createData('Coco', 'Ave', 'Macho', new Date('2024-10-14T09:30:00'), 'Problemas en el ala')
-];
 
 
 export function AppointmentTable() {
@@ -48,10 +32,12 @@ export function AppointmentTable() {
     const [search, setSearch] = React.useState("");
     const [selectedDate, setSelectedDate] = React.useState("");
     // 🔹 Filtrar por nombre y fecha
-    const filteredRows = rows.filter((row) => {
-        const rowDate = row.fechahora.toISOString().split("T")[0]; // Convertir a formato YYYY-MM-DD
+    const [appointments, setAppointments] = React.useState<Appointment[]>([]);
+
+    const filteredRows = appointments.filter((appointment) => {
+        const rowDate = appointment.date!!.toString().split("T")[0]; // Convertir a formato YYYY-MM-DD
         return (
-            row.nombre.toLowerCase().includes(search.toLowerCase()) &&
+            appointment.pet!!.name!!.toLowerCase().includes(search.toLowerCase()) &&
             (!selectedDate || rowDate === selectedDate)
         );
     });
@@ -111,7 +97,7 @@ export function AppointmentTable() {
                             {/* se usa el filteredRows para mostrar los datos filtrados */}
                             {filteredRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{row.nombre}</TableCell>
+                                    <TableCell>{row.appointment.pet!!.specie}</TableCell>
                                     <TableCell>{row.especie}</TableCell>
                                     <TableCell>{row.genero}</TableCell>
                                     <TableCell>{row.fechahora.toISOString().split("T")[0]}</TableCell>
@@ -124,7 +110,7 @@ export function AppointmentTable() {
                 <TablePagination
                     rowsPerPageOptions={[5, 15, 100]}
                     component="div"
-                    count={rows.length}
+                    count={Row.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
