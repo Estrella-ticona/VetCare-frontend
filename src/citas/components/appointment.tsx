@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 
 interface cita {
@@ -128,6 +129,12 @@ export function AppointmentTable() {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage} />
-            </Paper></>
+            </Paper>
+            <button className="ml-auto mt-10 hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
+                onClick={() => alert("Cita agregada")}>
+                <PlusIcon className="h-5 w-5" />
+                <span>Agregar Cita</span>
+            </button >
+        </>
     );
 }
