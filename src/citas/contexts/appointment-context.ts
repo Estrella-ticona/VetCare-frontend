@@ -6,6 +6,20 @@ export type AppointmentContextType = {
     setAppointments: (appointments: Appointment[]) => void;
     getAppointments: () => Promise<void>;
 
+    /*
+    1 useGetClients
+        lista de clientes
+    
+    2 useGetPets
+        mascostas del cliente
+
+    clienteSelected
+    setClienteSelected -> TRAER MASCOTAS
+
+    petSelected
+    setPetSelected -> la citada creada se debe actulizar con clientId y petId
+    */
+
     loadingAppointment: boolean;
     /* useCreateAppointment */
     appointment: Appointment;
