@@ -6,6 +6,8 @@ const api = new AppointmentApi();
 export function useCreateAppointment() {
 
     const [appointment, setAppointment] = useState<Appointment>(new Appointment());
+    const [clientselected, setClientselected] = useState<number>(0);
+    const [petsselected, setPetsselected] = useState<number>(0);
 
     const handleChangeAppointment = (name: keyof Appointment, value: string) => {
         setAppointment((prevAppointment) => ({
@@ -17,6 +19,8 @@ export function useCreateAppointment() {
         setAppointment(new Appointment());
     }
     const createAppointment = async () => {
+        appointment.clientId = clientselected;
+        appointment.petId = petsselected;
         await api.createAppointment(appointment);
         clearAppointment();
     }
