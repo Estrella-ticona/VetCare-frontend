@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,14 +9,17 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import { Appointment } from '../model/appointment';
+import { useContext, useState } from 'react';
+import { AppointmentContext } from '../contexts/appointment-context';
+import { FormAddAppointment } from './FormAddAppointment';
 
 function Row({ appointment }: { appointment: Appointment }) {
     return (
         <TableRow>
 
-            <TableCell component="th" scope="row">{appointment.pet!!.name}</TableCell>
-            <TableCell>{appointment.pet!!.specie!!}</TableCell>
-            <TableCell>{appointment.pet!!.gender}</TableCell>
+            <TableCell component="th" scope="row">{appointment.petName}</TableCell>
+            <TableCell>{appointment.petSpecie}</TableCell>
+            <TableCell>{appointment.petGender}</TableCell>
             <TableCell>{appointment.date}</TableCell>
             <TableCell>{appointment.reason}</TableCell>
 
@@ -27,20 +30,27 @@ function Row({ appointment }: { appointment: Appointment }) {
 
 
 export function AppointmentTable() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [search, setSearch] = React.useState("");
-    const [selectedDate, setSelectedDate] = React.useState("");
-    // 🔹 Filtrar por nombre y fecha
-    const [appointments, setAppointments] = React.useState<Appointment[]>([]);
+    const { appointments } = useContext(AppointmentContext);
+    const [open, setOpen] = useState(false);
 
-    const filteredRows = appointments.filter((appointment) => {
-        const rowDate = appointment.date!!.toString().split("T")[0]; // Convertir a formato YYYY-MM-DD
-        return (
-            appointment.pet!!.name!!.toLowerCase().includes(search.toLowerCase()) &&
-            (!selectedDate || rowDate === selectedDate)
-        );
-    });
+
+    const [page, setPage] = useState(0);
+
+
+
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [search, setSearch] = useState("");
+    const [selectedDate, setSelectedDate] = useState("");
+    // 🔹 Filtrar por nombre y fecha
+    /*   const [appointments, setAppointments] = React.useState<Appointment[]>([]); */
+
+    /*  const filteredRows = appointments.filter((appointment) => {
+         const rowDate = appointment.date!!.toString().split("T")[0]; // Convertir a formato YYYY-MM-DD
+         return (
+             appointment.pet!!.name!!.toLowerCase().includes(search.toLowerCase()) &&
+             (!selectedDate || rowDate === selectedDate)
+         );
+     }); */
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -51,32 +61,11 @@ export function AppointmentTable() {
         setPage(0);
     };
 
+
+
     return (
         <>
-            {/* barra de busqueda y filtro */}
-            <div className="flex gap-4 mb-4">
-                <input
-                    type="text"
-                    placeholder="Buscar por nombre..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className=" w-6xl bg-celeste-300  px-4 py-2 shadow-md rounded-lg hover:bg-celeste-400 "
-                />
-
-                <input
-                    type="date"
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    className="p-3 border rounded-lg shadow-md  bg-celeste-300"
-                />
-                <button
-                    onClick={() => { setSearch(""); setSelectedDate(""); }}
-                    /* rounded-lg  por si quiero que sea redondo*/
-                    className="bg-celeste-900 text-white px-4 py-2 shadow-md rounded-lg hover:bg-celeste-600  "
-                >
-                    Quitar filtros
-                </button>
-            </div>
+            {/*  */}
             {/* Desde aqui comienza la tabla */}
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 {/* tabla de datos */}
@@ -94,16 +83,7 @@ export function AppointmentTable() {
 
 
                         <TableBody>
-                            {/* se usa el filteredRows para mostrar los datos filtrados */}
-                            {filteredRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-                                <TableRow key={index}>
-                                    <TableCell>{row.appointment.pet!!.specie}</TableCell>
-                                    <TableCell>{row.especie}</TableCell>
-                                    <TableCell>{row.genero}</TableCell>
-                                    <TableCell>{row.fechahora.toISOString().split("T")[0]}</TableCell>
-                                    <TableCell>{row.motivo}</TableCell>
-                                </TableRow>
-                            ))}
+                            {appointments.map((appointment) => <Row key={appointment.id} appointment={appointment} />)}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -117,10 +97,36 @@ export function AppointmentTable() {
                     onRowsPerPageChange={handleChangeRowsPerPage} />
             </Paper>
             <button className="ml-auto mt-10 hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
-                onClick={() => alert("Cita agregada")}>
+                onClick={() => setOpen(true)}>
                 <PlusIcon className="h-5 w-5" />
                 <span>Agregar Cita</span>
             </button >
+            <FormAddAppointment open={open} handleClose={() => setOpen(false)} />
+
         </>
     );
 }
+{/* barra de busqueda y filtro */ }
+{/* <div className="flex gap-4 mb-4">
+<input
+    type="text"
+    placeholder="Buscar por nombre..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className=" w-6xl bg-celeste-300  px-4 py-2 shadow-md rounded-lg hover:bg-celeste-400 "
+/>
+
+<input
+    type="date"
+    value={selectedDate}
+    onChange={(e) => setSelectedDate(e.target.value)}
+    className="p-3 border rounded-lg shadow-md  bg-celeste-300"
+/>
+<button
+    onClick={() => { setSearch(""); setSelectedDate(""); }}
+    /* rounded-lg  por si quiero que sea redondo*/
+/*     className="bg-celeste-900 text-white px-4 py-2 shadow-md rounded-lg hover:bg-celeste-600  "
+>
+    Quitar filtros
+</button>
+</div> */} 

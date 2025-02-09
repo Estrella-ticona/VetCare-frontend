@@ -6,6 +6,8 @@ import { MainLayout } from "./public/pages/MainLayout"
 import { ClientsTable } from "@/clientes/components/ClientsTable"
 import { AppointmentTable } from "@/citas/components/appointment"
 import { ClientsContextProvider } from "./clientes/contexts/ClientsContextProvider"
+
+import { AppointmentContextProvider } from "./citas/contexts/appointmentContextProvider"
 function App() {
   return (
 
@@ -19,8 +21,14 @@ function App() {
           <ClientsContextProvider>
             <ClientsTable />
           </ClientsContextProvider>
+
         } />
-        <Route path="/citas" element={<AppointmentTable />} />
+        <Route path="/citas" element={
+          <AppointmentContextProvider>
+            <AppointmentTable />
+          </AppointmentContextProvider>
+        } />
+
 
       </Route>
 

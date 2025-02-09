@@ -1,13 +1,18 @@
-import { Pet } from '@/clientes/model/pet';
+
 export class Appointment {
+    clientId?: number;
     id?: number;
-    petid?: number;
+    petId?: number;
+    petName?: string;
+    petSpecie?: string;
+    petGender?: string;
     reason?: string;
     date?: string;
-    pet?: Pet;
+
 
 
     constructor(data: Partial<Appointment> = {}) {
         Object.assign(this, data);
     }
 }
+
