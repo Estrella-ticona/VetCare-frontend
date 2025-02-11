@@ -4,11 +4,16 @@ import { useCreateAppointment } from "../hooks/useCreateAppointment";
 import { useGetAppointment } from "../hooks/useGetAppointment";
 
 import { AppointmentContext, AppointmentContextType } from "./appointment-context";
+import { useGetClients } from "../hooks/useGetClient";
+import { useGetPets } from "../hooks/useGetPet";
 
 export function AppointmentContextProvider({ children }: { children: ReactNode }) {
 
-    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment } = useCreateAppointment();
+    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected } = useCreateAppointment();
     const { getAppointments, appointments, setAppointments, loadingAppointment } = useGetAppointment();
+    const { clients, setClients, getClients } = useGetClients();
+    const { pets, setPets, getPets } = useGetPets();
+
 
 
 
@@ -18,10 +23,24 @@ export function AppointmentContextProvider({ children }: { children: ReactNode }
         createAppointment,
         handleChangeAppointment,
         setAppointment,
+        setClientselected,
+        setPetsselected,
+        clientselected,
+        petsselected,
+
+
         getAppointments,
         appointments,
         setAppointments,
-        loadingAppointment
+        loadingAppointment,
+
+        clients,
+        setClients,
+        getClients,
+        pets,
+        setPets,
+        getPets
+
     }
 
 

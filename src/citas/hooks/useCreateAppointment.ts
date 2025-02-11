@@ -24,5 +24,5 @@ export function useCreateAppointment() {
         await api.createAppointment(appointment);
         clearAppointment();
     }
-    return { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment };
+    return { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected };
 }
