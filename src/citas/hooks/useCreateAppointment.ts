@@ -5,6 +5,9 @@ import dayjs, { Dayjs } from "dayjs";
 const api = new AppointmentApi();
 
 export function useCreateAppointment() {
+    const [petName, setPetName] = useState<string>("");
+    const [petSpecie, setPetSpecie] = useState<string>("");
+    const [petGender, setPetGender] = useState<string>("");
     const [date, setDate] = useState<Dayjs | null>(dayjs(new Date()));
     const [appointment, setAppointment] = useState<Appointment>(new Appointment());
     const [clientselected, setClientselected] = useState<number>(0);
@@ -26,5 +29,5 @@ export function useCreateAppointment() {
         await api.createAppointment(appointment);
         clearAppointment();
     }
-    return { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected, date, setDate };
+    return { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected, date, setDate, petName, setPetName, petSpecie, setPetSpecie, petGender, setPetGender };
 }

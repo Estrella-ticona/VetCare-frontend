@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { Appointment } from "../model/appointment";
 import { Client } from "@/clientes/model/client";
 import dayjs, { Dayjs } from "dayjs";
+import { Pet } from "@/clientes/model/pet";
 export type AppointmentContextType = {
     /* useGetAppointments */
     appointments: Appointment[];
@@ -41,9 +42,16 @@ export type AppointmentContextType = {
     clients: Client[];
     setClients: (clients: Client[]) => void;
     getClients: () => Promise<void>;
-    pets: Client[];
+    pets: Pet[];
     setPets: (pets: Client[]) => void;
     getPets: (id: number) => Promise<void>;
+    petName: string;
+    setPetName: (petName: string) => void;
+    petSpecie: string;
+    setPetSpecie: (petSpecie: string) => void;
+    petGender: string;
+    setPetGender: (petGender: string) => void;
+
 
 
 
@@ -57,6 +65,13 @@ export const AppointmentContext = createContext<AppointmentContextType>({
     loadingAppointment: true,
     appointment: new Appointment(),
     handleChangeAppointment: () => { },
+
+    petName: "",
+    setPetName: () => { },
+    petSpecie: "",
+    setPetSpecie: () => { },
+    petGender: "",
+    setPetGender: () => { },
 
     clearAppointment: () => { },
     createAppointment: async () => { },

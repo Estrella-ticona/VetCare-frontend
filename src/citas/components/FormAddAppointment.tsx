@@ -10,23 +10,22 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useContext } from "react";
 import { AppointmentContext } from "../contexts/appointment-context";
 import 'dayjs/locale/es-pr';
+import { Appointment } from "../model/appointment";
 export function FormAddAppointment({ open, handleClose, }: { open: boolean, handleClose: () => void }) {
 
     /* TODO ESTO SE DEBE DE CAMBIAR A PET */
 
-    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, clients, pets, setClientselected, getPets, setPetsselected, date, setDate } = useContext(AppointmentContext);
+    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, clients, pets, setClientselected, getPets, setPetsselected, date, setDate, appointments, petName, petSpecie, petGender, setPetName, setPetSpecie, setPetGender } = useContext(AppointmentContext);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        appointment.petName = petName;
+        appointment.petSpecie = petSpecie;
+        appointment.petGender = petGender;
+
+        appointments.push(appointment);
 
         handleClose();
-        /*   clients.forEach((client: Client) => {
-              if (client.id === clientId && client.pets) {
-                  client.pets.push(pet);
-              }
-          }); */
-        /* pet.push(pet); */
-
         await createAppointment();
     }
 
@@ -55,7 +54,8 @@ export function FormAddAppointment({ open, handleClose, }: { open: boolean, hand
 
                                 options={pets}
                                 getOptionLabel={(option) => option.name || ""}
-                                onChange={(e, value) => { setPetsselected(value!!.id!!) }}
+                                //ACAAAAAAAAAAAA SETEAR LOS DATOS DE LA MASCOTA
+                                onChange={(e, value) => { setPetsselected(value!!.id!!); setPetName(value?.name!!); setPetSpecie(value?.specie!!); setPetGender(value?.gender!!) }}
                                 sx={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Mascotas" />}
                             />
