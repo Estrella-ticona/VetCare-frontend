@@ -12,6 +12,7 @@ import { Appointment } from '../model/appointment';
 import { useContext, useState } from 'react';
 import { AppointmentContext } from '../contexts/appointment-context';
 import { FormAddAppointment } from './FormAddAppointment';
+import dayjs from 'dayjs';
 
 function Row({ appointment }: { appointment: Appointment }) {
     return (
@@ -20,7 +21,7 @@ function Row({ appointment }: { appointment: Appointment }) {
             <TableCell component="th" scope="row">{appointment.petName}</TableCell>
             <TableCell>{appointment.petSpecie}</TableCell>
             <TableCell>{appointment.petGender}</TableCell>
-            <TableCell>{appointment.date}</TableCell>
+            <TableCell>{dayjs(appointment.date).format('DD/MM/YYYY hh:mm a')}</TableCell>
             <TableCell>{appointment.reason}</TableCell>
 
         </TableRow>

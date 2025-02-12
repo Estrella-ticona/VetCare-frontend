@@ -9,7 +9,7 @@ import { useGetPets } from "../hooks/useGetPet";
 
 export function AppointmentContextProvider({ children }: { children: ReactNode }) {
 
-    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected } = useCreateAppointment();
+    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected, date, setDate } = useCreateAppointment();
     const { getAppointments, appointments, setAppointments, loadingAppointment } = useGetAppointment();
     const { clients, setClients, getClients } = useGetClients();
     const { pets, setPets, getPets } = useGetPets();
@@ -27,6 +27,8 @@ export function AppointmentContextProvider({ children }: { children: ReactNode }
         setPetsselected,
         clientselected,
         petsselected,
+        date,
+        setDate,
 
 
         getAppointments,

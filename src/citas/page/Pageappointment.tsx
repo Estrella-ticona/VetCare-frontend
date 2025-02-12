@@ -1,4 +1,4 @@
-import { AppointmentTable } from "../components/appointment";
+import { AppointmentTable } from "../components/AppointmentTable";
 import { AppointmentContextProvider } from "../contexts/appointmentContextProvider";
 
 export function Pageappointment() {

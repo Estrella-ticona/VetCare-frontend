@@ -3,13 +3,18 @@ import { Button, Dialog } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useContext } from "react";
 import { AppointmentContext } from "../contexts/appointment-context";
+import 'dayjs/locale/es-pr';
 export function FormAddAppointment({ open, handleClose, }: { open: boolean, handleClose: () => void }) {
 
     /* TODO ESTO SE DEBE DE CAMBIAR A PET */
 
-    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, clients, pets } = useContext(AppointmentContext);
+    const { appointment, clearAppointment, createAppointment, handleChangeAppointment, clients, pets, setClientselected, getPets, setPetsselected, date, setDate } = useContext(AppointmentContext);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -39,31 +44,43 @@ export function FormAddAppointment({ open, handleClose, }: { open: boolean, hand
                             autoComplete="off">
                             <Autocomplete
                                 disablePortal
-                                options={clients.map((option) => option.name)}
-                                onChange={(e, value) => alert(value)}
+                                options={clients}
+                                getOptionLabel={(option) => option.name || ""}
+                                onChange={(e, value) => { setClientselected(value!!.id!!); getPets(value!!.id!!).then() }}
                                 sx={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Dueño" />}
                             />
                             <Autocomplete
                                 disablePortal
-                                options={pets.map((option) => option.name)}
+
+                                options={pets}
+                                getOptionLabel={(option) => option.name || ""}
+                                onChange={(e, value) => { setPetsselected(value!!.id!!) }}
                                 sx={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Mascotas" />}
                             />
-                            <TextField
+                            {/*  <TextField
                                 required
                                 id="outlined-required"
                                 label="fecha"
                                 className="bg-celeste-100"
                                 value={appointment.date}
                                 onChange={(e) => handleChangeAppointment("date", e.target.value)}
-                            />
+                            /> */}
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-pr">
+                                <DemoContainer components={['DateTimePicker']}>
+                                    <DateTimePicker label="Basic date time picker"
+                                        value={date}
+                                        onChange={(newDate) => setDate(newDate)} />
+
+                                </DemoContainer>
+                            </LocalizationProvider>
 
                             <TextField
                                 required
                                 id="outlined-required"
                                 label=" Motivo"
-                                className="bg-celeste-100"
+                                /*  className="bg-celeste-100" */
                                 value={appointment.reason}
                                 onChange={(e) => handleChangeAppointment("reason", e.target.value)}
                             />

@@ -1,11 +1,13 @@
 import { createContext } from "react";
 import { Appointment } from "../model/appointment";
 import { Client } from "@/clientes/model/client";
+import dayjs, { Dayjs } from "dayjs";
 export type AppointmentContextType = {
     /* useGetAppointments */
     appointments: Appointment[];
     setAppointments: (appointments: Appointment[]) => void;
     getAppointments: () => Promise<void>;
+
 
 
     /*
@@ -33,6 +35,8 @@ export type AppointmentContextType = {
     setPetsselected: (petsselected: number) => void;
     clientselected: number;
     petsselected: number;
+    date: Dayjs | null;
+    setDate: (date: Dayjs | null) => void;
 
     clients: Client[];
     setClients: (clients: Client[]) => void;
@@ -60,6 +64,8 @@ export const AppointmentContext = createContext<AppointmentContextType>({
     setPetsselected: () => { },
     clientselected: 0,
     petsselected: 0,
+    date: dayjs(new Date()),
+    setDate: () => { },
 
     clients: [],
     setClients: () => { },
