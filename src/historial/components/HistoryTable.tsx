@@ -11,10 +11,13 @@ import { History } from '../model/history';
 import 'dayjs/locale/es-pr';
 import { useContext, useState } from 'react';
 import { HistoryContext } from '../context/historyContex';
-import { Skeleton } from "@mui/material";
+import { Dialog, Skeleton } from "@mui/material";
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
+import { HistoryAccordions } from './HistoryAccordions';
 
 function Row({ history }: { history: History }) {
+    const [open, setOpen] = useState(false);
+
     return (
         <TableRow>
 
@@ -24,14 +27,21 @@ function Row({ history }: { history: History }) {
 
             <TableCell>
                 <button
-                    className="  hover:cursor-pointer  bg-celeste-800 text-white py-2 px-4 rounded-full hover:bg-celeste-300">
+                    className="  hover:cursor-pointer  bg-celeste-800 text-white py-2 px-4 rounded-full hover:bg-celeste-300" onClick={() => setOpen(true)}>
                     <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                 </button>
             </TableCell>
 
-
-
-
+            {/* pasar a componente */}
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                {history.appointments!![0].clientName}
+                {history.appointments?.at(0)?.petName}
+                {history.appointments!![0].petSpecie}
+                <h2>Citas</h2>
+                <HistoryAccordions history={history} />
+            </Dialog>
+            {/* HistorialDialog */}
+            {/* pasar a componente */}
         </TableRow>
     );
 }
