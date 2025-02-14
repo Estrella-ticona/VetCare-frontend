@@ -7,10 +7,30 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
+import { History } from '../model/history';
 import 'dayjs/locale/es-pr';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { HistoryContext } from '../context/historyContex';
+import { Skeleton } from "@mui/material";
+
+function Row({ history }: { history: History }) {
+    return (
+        <TableRow>
+
+            <TableCell>{history.appoinments!![0].clientName}</TableCell>
+            <TableCell>{history.appoinments?.at(0)?.petName}</TableCell>
+            <TableCell>{history.appoinments!![0].petSpecie}</TableCell>
+            <TableCell>{history.appoinments!![0].diagnostic}</TableCell>
+
+        </TableRow>
+    );
+}
+
 
 export function HistoryTable() {
+
+    const { history, loadingHistory } = useContext(HistoryContext);
+
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(0);
     const handleChangePage = (event: unknown, newPage: number) => setPage(newPage);
@@ -19,6 +39,7 @@ export function HistoryTable() {
         setPage(0);
     };
     return (
+
 
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -32,7 +53,24 @@ export function HistoryTable() {
 
                         </TableRow>
                     </TableHead>
-                    <TableBody> </TableBody>
+                    <TableBody>
+                        {loadingHistory ? (
+                            Array.from(new Array(5)).map((_) => (
+                                <TableRow>
+                                    <TableCell colSpan={5} style={{ padding: "4px 0" }}>
+                                        <Skeleton variant="rectangular" height={50} width="100%" />
+                                    </TableCell>
+                                </TableRow>)
+                            )) : history.map((history) =>
+                                <Row
+                                    history={
+                                        history
+                                    }
+                                />
+                            )}
+
+
+                    </TableBody>
 
                     {/* <TableBody>
                         {filteredHistory

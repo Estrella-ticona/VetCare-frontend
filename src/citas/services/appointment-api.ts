@@ -10,4 +10,5 @@ export class AppointmentApi {
         return http.post(`${this.endpoint}`, appointment);
     }
 
+
 }

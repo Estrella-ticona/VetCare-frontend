@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router"
+import { Pageappointment } from "./citas/page/Pageappointment"
+import { Pageclient } from "./clientes/page/pageclient"
+import { Historypage } from "./historial/page/historypage"
 import { Login } from "./iam/components/Login"
 import { Register } from "./iam/components/Register"
 import { Profile } from "./profile/components/Profile"
 import { MainLayout } from "./public/pages/MainLayout"
-import { Pageappointment } from "./citas/page/Pageappointment"
-import { Pageclient } from "./clientes/page/pageclient"
-import { HistoryTable } from "./historial/components/historyTable"
 function App() {
   return (
 
@@ -17,7 +17,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/clientes" element={<Pageclient />} />
         <Route path="/citas" element={<Pageappointment />} />
-        <Route path="/historial" element={<HistoryTable />} />
+        <Route path="/historial" element={<Historypage />} />
 
       </Route>
 
