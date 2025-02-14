@@ -2,9 +2,10 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useSignUp } from '../hooks/useSignUp';
 import { Link } from 'react-router';
+import { Button } from '@mui/material';
 
 export function Register() {
-    const { user, handleChange, handleSubmit } = useSignUp();
+    const { user, handleChange, handleSubmit, loading } = useSignUp();
 
     const register = async (e: any) => {
         e.preventDefault();
@@ -91,12 +92,24 @@ export function Register() {
                         </Box>
                     </div>
                     <div className="text-center">
-                        <button
+                        <Button
+                            loading={loading}
                             type="submit"
-                            className="w-full text-white py-3 rounded-lg hover:opacity-80 transition bg-celeste-900"
+                            sx={{
+                                textTransform: 'none',
+                                width: '100%',
+                                backgroundColor: '#486f99', // Reemplaza por tu color 'celeste-900'
+                                color: 'white',
+                                fontWeight: '600',
+                                borderRadius: 1,
+                                '&:hover': {
+                                    opacity: 0.8,
+                                },
+                                transition: 'opacity 0.3s ease',
+                            }}
                         >
                             Crear Cuenta
-                        </button>
+                        </Button>
                     </div>
                 </form>
                 <p className="text-center mt-4 text-gray-600">

@@ -2,9 +2,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useSignIn } from '../hooks/useSignIn';
 import { Link } from 'react-router';
+import { Button } from '@mui/material';
 
 export function Login() {
-    const { user, handleChange, handleSubmit } = useSignIn();
+    const { user, handleChange, handleSubmit, loading } = useSignIn();
 
     const login = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -56,12 +57,25 @@ export function Login() {
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
-                    <button
+
+                    <Button
+                        loading={loading}
                         type="submit"
-                        className="w-full bg-celeste-900 text-white font-semibold py-2 rounded hover:opacity-80 transition"
+                        sx={{
+                            textTransform: 'none',
+                            width: '100%',
+                            backgroundColor: '#486f99', // Reemplaza por tu color 'celeste-900'
+                            color: 'white',
+                            fontWeight: '600',
+                            borderRadius: 1,
+                            '&:hover': {
+                                opacity: 0.8,
+                            },
+                            transition: 'opacity 0.3s ease',
+                        }}
                     >
                         Iniciar sesión
-                    </button>
+                    </Button >
                 </form>
                 <p className="mt-4 text-center text-gray-700">
                     ¿No tienes cuenta?{' '}
