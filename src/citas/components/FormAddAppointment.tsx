@@ -10,7 +10,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useContext } from "react";
 import { AppointmentContext } from "../contexts/appointment-context";
 import 'dayjs/locale/es-pr';
-import { Appointment } from "../model/appointment";
 export function FormAddAppointment({ open, handleClose, }: { open: boolean, handleClose: () => void }) {
 
     /* TODO ESTO SE DEBE DE CAMBIAR A PET */

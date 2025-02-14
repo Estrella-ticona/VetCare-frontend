@@ -5,6 +5,7 @@ import { Profile } from "./profile/components/Profile"
 import { MainLayout } from "./public/pages/MainLayout"
 import { Pageappointment } from "./citas/page/Pageappointment"
 import { Pageclient } from "./clientes/page/pageclient"
+import { HistoryTable } from "./historial/components/historyTable"
 function App() {
   return (
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/clientes" element={<Pageclient />} />
         <Route path="/citas" element={<Pageappointment />} />
+        <Route path="/historial" element={<HistoryTable />} />
 
       </Route>
 

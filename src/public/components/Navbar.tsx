@@ -26,9 +26,9 @@ export function Navbar() {
                     <Link to="/citas" className="hover:underline">
                         Citas
                     </Link>
-                    <a href="#" className="hover:underline">
+                    <Link to="/historial" className="hover:underline">
                         Historial
-                    </a>
+                    </Link>
                     <a href="#" className="hover:underline">
                         Inventario
                     </a>
