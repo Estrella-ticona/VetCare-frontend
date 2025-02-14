@@ -11,10 +11,22 @@ export function useGetHistory() {
         setHistory(response.data);
         setLoadingHistory(false);
     }
+    const clearHistory = () => {
+        setHistory([]);
+    }
+
+    const handleChangeHistory = (name: keyof History, value: string) => {
+        setHistory((prevHistory) => ({
+            ...prevHistory,
+            [name]: value,
+        }));
+    };
+
     useEffect(() => {
         getallHistory().then();
     }
         , []);
 
-    return { history, setHistory, getallHistory, loadingHistory };
+
+    return { history, setHistory, getallHistory, loadingHistory, clearHistory, handleChangeHistory };
 }
