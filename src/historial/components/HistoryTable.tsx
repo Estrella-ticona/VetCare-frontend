@@ -12,15 +12,25 @@ import 'dayjs/locale/es-pr';
 import { useContext, useState } from 'react';
 import { HistoryContext } from '../context/historyContex';
 import { Skeleton } from "@mui/material";
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
 
 function Row({ history }: { history: History }) {
     return (
         <TableRow>
 
-            <TableCell>{history.appoinments!![0].clientName}</TableCell>
-            <TableCell>{history.appoinments?.at(0)?.petName}</TableCell>
-            <TableCell>{history.appoinments!![0].petSpecie}</TableCell>
-            <TableCell>{history.appoinments!![0].diagnostic}</TableCell>
+            <TableCell>{history.appointments!![0].clientName}</TableCell>
+            <TableCell>{history.appointments?.at(0)?.petName}</TableCell>
+            <TableCell>{history.appointments!![0].petSpecie}</TableCell>
+
+            <TableCell>
+                <button
+                    className="  hover:cursor-pointer  bg-celeste-800 text-white py-2 px-4 rounded-full hover:bg-celeste-300">
+                    <ArrowTopRightOnSquareIcon className="h-5 w-5" />
+                </button>
+            </TableCell>
+
+
+
 
         </TableRow>
     );

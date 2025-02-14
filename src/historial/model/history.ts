@@ -1,7 +1,7 @@
 import { Appointment } from "@/citas/model/appointment";
 
 export class History {
-    appoinments?: Appointment[];
+    appointments?: Appointment[];
 
     constructor(data: Partial<History> = {}) {
         Object.assign(this, data);

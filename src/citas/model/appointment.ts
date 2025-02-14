@@ -19,9 +19,9 @@ export class Appointment {
     //------
     reason?: string;
     description?: string;
-    diagnostic?: string;
+    diagnosis?: string;
     treatment?: string;
-    observation?: string;
+    observations?: string;
     date?: string;
 
 
