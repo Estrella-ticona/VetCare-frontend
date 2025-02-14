@@ -5,6 +5,11 @@ import TextField from '@mui/material/TextField';
 import { useContext } from "react";
 import { ClientsContext } from "../contexts/clients-context";
 import { Client } from "../model/client";
+import dayjs, { Dayjs } from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import 'dayjs/locale/es-pr';
 
 export function FormAddPet({ open, handleClose, clientId }: { open: boolean, clientId: number, handleClose: () => void }) {
     const { clearPet, handleChangePet, pet, createPet, clients } = useContext(ClientsContext);
@@ -65,6 +70,37 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                                 value={pet.gender}
                                 onChange={(e) => handleChangePet("gender", e.target.value.toUpperCase())}
                             />
+
+
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Raza"
+                                className="bg-celeste-100"
+                                value={pet.breed}
+                                onChange={(e) => handleChangePet("breed", e.target.value.toUpperCase())}
+                            />
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Peso"
+                                className="bg-celeste-100"
+                                value={pet.weight}
+                                onChange={(e) => handleChangePet("weight", e.target.value.toUpperCase())}
+                            />
+
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-pr">
+                                <DatePicker
+                                    label="Fecha de Nacimiento"
+                                    className="bg-celeste-100"
+                                    value={dayjs(pet.birthDate)}
+                                    onChange={(newDate) => handleChangePet("birthDate", newDate!!.format('DD-MM-YYYY'))}
+                                    views={['year', 'month', 'day']}  // Permite seleccionar Año → Mes → Día
+                                    format="DD/MM/YYYY"
+                                />
+                                {/*  onChange={(e) => handleChangePet("petBirthDate", e.target.value.toUpperCase())} */}
+                            </LocalizationProvider>
+
                         </Box>
                     </div>
                     <div className="flex items-center justify-end">
@@ -77,7 +113,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                         </div>
                     </div>
                 </form>
-            </div>
-        </Dialog>
+            </div >
+        </Dialog >
     );
 }

@@ -37,7 +37,11 @@ function Row({ pet }: { pet: Pet }) {
             <TableCell>{pet.age}</TableCell>
             <TableCell>{pet.specie}</TableCell>
             <TableCell>{pet.gender} </TableCell>
-            <TableCell>{pet.register}</TableCell>
+            <TableCell>{pet.registerDate}</TableCell>
+            <TableCell>{pet.birthDate}</TableCell>
+            <TableCell>{pet.breed}</TableCell>
+            <TableCell>{pet.weight}</TableCell>
+
             <TableCell> <button className="  hover:cursor-pointer  bg-red-500 text-celeste-100 py-2 px-4 rounded-full" onClick={handleDelete}> <TrashIcon className="h-5 w-5" /></button></TableCell>
         </TableRow>
     )
@@ -64,6 +68,9 @@ export function PetsTable({ open, pets, clientId }: { open: boolean, pets: Pet[]
                                     <TableCell>Especie</TableCell>
                                     <TableCell>Sexo</TableCell>
                                     <TableCell>Fecha de Registro</TableCell>
+                                    <TableCell>Fecha de Nacimiento</TableCell>
+                                    <TableCell>Raza</TableCell>
+                                    <TableCell>Peso</TableCell>
                                 </TableRow>
                             </TableHead>
                             {/* contenido */}

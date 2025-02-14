@@ -26,7 +26,7 @@ function AppointmentAccordion({ appointment }: { appointment: Appointment }) {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <HistoryForm />
+                <HistoryForm appointment={appointment} />
             </AccordionDetails>
         </Accordion>
     );

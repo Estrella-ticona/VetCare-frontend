@@ -14,6 +14,7 @@ import { HistoryContext } from '../context/historyContex';
 import { Dialog, Skeleton } from "@mui/material";
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
 import { HistoryAccordions } from './HistoryAccordions';
+import { HistoryDialog } from './HistoryDialog';
 
 function Row({ history }: { history: History }) {
     const [open, setOpen] = useState(false);
@@ -33,13 +34,8 @@ function Row({ history }: { history: History }) {
             </TableCell>
 
             {/* pasar a componente */}
-            <Dialog open={open} onClose={() => setOpen(false)}>
-                {history.appointments!![0].clientName}
-                {history.appointments?.at(0)?.petName}
-                {history.appointments!![0].petSpecie}
-                <h2>Citas</h2>
-                <HistoryAccordions history={history} />
-            </Dialog>
+            <HistoryDialog open={open} handleClose={() => setOpen(false)} history={history} />
+
             {/* HistorialDialog */}
             {/* pasar a componente */}
         </TableRow>

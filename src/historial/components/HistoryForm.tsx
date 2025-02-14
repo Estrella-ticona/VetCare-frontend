@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { HistoryContext } from "../context/historyContex";
-import { Button, Dialog } from "@mui/material";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Appointment } from "@/citas/model/appointment";
 
-export function HistoryForm() {
-    const { history, setHistory, getallHistory, handleChangeHistory } = useContext(HistoryContext);
+
+export function HistoryForm({ appointment }: { appointment: Appointment }) {
+    /* const { history, setHistory, getallHistory, handleChangeHistory } = useContext(HistoryContext); */
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
         /*     history.push(history); */
-        setHistory(history);
-        await getallHistory();
+        /*  setHistory(history);
+         await getallHistory(); */
     }
     return (
 
@@ -31,35 +31,33 @@ export function HistoryForm() {
                             id="outlined-required"
                             label="Descripción"
                             className="bg-celeste-100"
-                            value={history.at(0)?.appointments?.at(0)?.description
-                            }
-                            onChange={(e) => handleChangeHistory("appointments", e.target.value)}
+                            value={appointment.description}
+
+                        /* onChange={(e) => handleChangeHistory("appointments", e.target.value)} */
                         />
                         <TextField
                             required
                             id="outlined-required"
                             label="Tratamiento"
                             className="bg-celeste-100"
-                            value={history.at(0)?.appointments?.at(0)?.treatment
-                            }
-                            onChange={(e) => handleChangeHistory("appointments", e.target.value)}
+                            value={appointment.treatment}
+                        /* onChange={(e) => handleChangeHistory("appointments", e.target.value)} */
                         />
                         <TextField
                             required
                             id="outlined-required"
                             label="Diagnóstico"
                             className="bg-celeste-100"
-                            value={history.at(0)?.appointments?.at(0)?.diagnosis
-                            }
-                            onChange={(e) => handleChangeHistory("appointments", e.target.value)}
+                            value={appointment.diagnosis}
+                        /* onChange={(e) => handleChangeHistory("appointments", e.target.value)} */
                         />
                         <TextField
                             required
                             id="outlined-required"
                             label="Observaciones"
                             className="bg-celeste-100"
-                            value={history.at(0)?.appointments?.at(0)?.observations}
-                            onChange={(e) => handleChangeHistory("appointments", e.target.value)}
+                            value={appointment.observations}
+                        /* onChange={(e) => handleChangeHistory("appointments", e.target.value)} */
                         />
 
                     </Box>
