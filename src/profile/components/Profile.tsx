@@ -1,19 +1,12 @@
-
-import { PencilIcon } from "@heroicons/react/24/solid";
-import { useEffect } from "react";
-import { useUpdateUser } from "../hooks/useUpdateUser";
+import { CheckIcon, PencilIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import TextField from '@mui/material/TextField';
-import { CheckIcon } from "@heroicons/react/24/solid";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useUpdateUser } from "../hooks/useUpdateUser";
+
 export function Profile() {
-    const { user, handleChange, getUser, handleSubmit, isEditing, handleEditMode } = useUpdateUser();
-    useEffect(() => {
-        getUser();
-    }, []);
+    const { user, handleChange, handleSubmit, isEditing, handleEditMode } = useUpdateUser();
 
     return (
         <div className="bg-celeste-500 text-white rounded-xl p-8 w-full max-w-4xl shadow-lg mx-auto mt-40" >
-
             <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold">Datos personales</h1>
                 {!isEditing &&
@@ -24,8 +17,6 @@ export function Profile() {
                     </button>
                 }
             </div>
-
-
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                 <div>
                     <h2 className="text-sm uppercase text-gray-300">Nombre completo</h2>
@@ -87,17 +78,13 @@ export function Profile() {
                         variant="standard"
                     />
                 </div>
-
             </div>
-
             <div className="flex items-center justify-end">
                 {isEditing &&
                     <div className="flex items-center space-x-2 bg-white text-celeste-900 py-2 px-4 rounded-full"
                     >
-
                         <button onClick={handleSubmit} ><CheckIcon className="h-5 w-5" /></button>
                         <button onClick={handleEditMode}> <XMarkIcon className="h-5 w-5" /> </button>
-
                     </div>
                 }
             </div>

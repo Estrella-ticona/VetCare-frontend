@@ -8,24 +8,8 @@ export type AppointmentContextType = {
     appointments: Appointment[];
     setAppointments: (appointments: Appointment[]) => void;
     getAppointments: () => Promise<void>;
-
-
-
-    /*
-    1 useGetClients
-        lista de clientes
-    
-    2 useGetPets
-        mascostas del cliente
-
-    clienteSelected
-    setClienteSelected -> TRAER MASCOTAS
-
-    petSelected
-    setPetSelected -> la citada creada se debe actulizar con clientId y petId
-    */
-
     loadingAppointment: boolean;
+
     /* useCreateAppointment */
     appointment: Appointment;
     handleChangeAppointment: (name: keyof Appointment, value: string) => void;
@@ -38,13 +22,6 @@ export type AppointmentContextType = {
     petsselected: number;
     date: Dayjs | null;
     setDate: (date: Dayjs | null) => void;
-
-    clients: Client[];
-    setClients: (clients: Client[]) => void;
-    getClients: () => Promise<void>;
-    pets: Pet[];
-    setPets: (pets: Client[]) => void;
-    getPets: (id: number) => Promise<void>;
     petName: string;
     setPetName: (petName: string) => void;
     petSpecie: string;
@@ -52,10 +29,15 @@ export type AppointmentContextType = {
     petGender: string;
     setPetGender: (petGender: string) => void;
 
-
-
-
+    /* useGetClients */
+    clients: Client[];
+    setClients: (clients: Client[]) => void;
+    getClients: () => Promise<void>;
+    pets: Pet[];
+    setPets: (pets: Client[]) => void;
+    getPets: (id: number) => Promise<void>;
 }
+
 /* valores por defecto */
 export const AppointmentContext = createContext<AppointmentContextType>({
     appointments: [],
@@ -88,5 +70,4 @@ export const AppointmentContext = createContext<AppointmentContextType>({
     pets: [],
     setPets: () => { },
     getPets: async () => { },
-
 });

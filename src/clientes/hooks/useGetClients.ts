@@ -9,6 +9,7 @@ const api2 = new PetsApi();
 export function useGetClients() {
     const [clients, setClients] = useState<Client[]>([]);
     const [loadingclient, setloadingclient] = useState(true);
+
     useEffect(() => {
         const fetchClientsWithPets = async () => {
             try {

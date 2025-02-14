@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Appointment } from "../model/appointment";
 import { AppointmentApi } from "@/citas/services/appointment-api";
 import dayjs, { Dayjs } from "dayjs";
+
 const api = new AppointmentApi();
 
 export function useCreateAppointment() {
@@ -19,9 +20,11 @@ export function useCreateAppointment() {
             [name]: value,
         }));
     };
+
     const clearAppointment = () => {
         setAppointment(new Appointment());
     }
+
     const createAppointment = async () => {
         appointment.date = date?.format("YYYY-MM-DDTHH:mm:ss") || "";
         appointment.clientId = clientselected;
@@ -29,5 +32,6 @@ export function useCreateAppointment() {
         await api.createAppointment(appointment);
         clearAppointment();
     }
+
     return { appointment, clearAppointment, createAppointment, handleChangeAppointment, setAppointment, setClientselected, setPetsselected, clientselected, petsselected, date, setDate, petName, setPetName, petSpecie, setPetSpecie, petGender, setPetGender };
 }

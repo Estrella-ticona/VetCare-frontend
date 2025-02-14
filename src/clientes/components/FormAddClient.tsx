@@ -35,7 +35,6 @@ export function FormAddClient({ open, handleClose, }: { open: boolean, handleClo
                                 value={client.name}
                                 onChange={(e) => handleChangeClient("name", e.target.value)}
                             />
-
                             <TextField
                                 required
                                 id="outlined-required"

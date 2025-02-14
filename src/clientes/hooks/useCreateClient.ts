@@ -4,7 +4,6 @@ import { ClientsApi } from "../services/clients-api";
 
 const api = new ClientsApi();
 
-
 export function useCreateClient() {
     const [client, setClient] = useState<Client>(new Client());
 
@@ -23,9 +22,6 @@ export function useCreateClient() {
         await api.createClient(client);
         clearClient();
     }
-
-
-
 
     return { client, clearClient, createClient, handleChangeClient, setClient };
 }

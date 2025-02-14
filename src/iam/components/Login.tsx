@@ -20,14 +20,11 @@ export function Login() {
                 alt="mascotas"
                 className="absolute inset-0 w-full h-full object-cover"
             />
-
             {/* Capa semitransparente */}
             <div className="absolute inset-0 bg-black/30"></div>
-
             {/* Contenedor del formulario */}
             <div className="relative w-full max-w-md bg-white/10 p-8 rounded-2xl shadow-lg backdrop-blur-sm">
                 <h1 className="text-2xl font-bold mb-6 text-center text-white shadow-2xl">VetCare</h1>
-
                 <form onSubmit={login}>
                     <div className="mb-4">
                         <Box sx={{ '& > :not(style)': { m: 1, width: '100%' } }}>
@@ -57,7 +54,6 @@ export function Login() {
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
-
                     <Button
                         loading={loading}
                         type="submit"

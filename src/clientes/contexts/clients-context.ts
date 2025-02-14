@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { Client } from "../model/client";
 import { Pet } from "../model/pet";
+
 export type ClientsContextType = {
     /* useGetClients */
     clients: Client[];
@@ -8,16 +9,12 @@ export type ClientsContextType = {
     getClients: () => Promise<void>;
     loadingclient: boolean;
 
-
     /*UseCreate pet */
     pet: Pet;
     handleChangePet: (name: keyof Pet, value: string) => void;
     clearPet: () => void;
     createPet: (clientId: number) => Promise<void>;
     deletePet: (pet: Pet) => Promise<void>;
-
-
-
 
     /* useCreateClient */
     client: Client;
@@ -45,5 +42,4 @@ export const ClientsContext = createContext<ClientsContextType>({
     clearClient: () => { },
     createClient: async () => { },
     handleChangeClient: () => { },
-
 });

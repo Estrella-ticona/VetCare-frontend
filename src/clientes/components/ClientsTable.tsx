@@ -40,23 +40,16 @@ function Row({ client }: { client: Client }) {
                 <TableCell>{client.email}</TableCell>
                 <TableCell>{client.phone}</TableCell>
             </TableRow>
-
-            {/* informacion de las mascota */}
             {
                 client.pets && client.id &&
                 <PetsTable open={open} pets={client.pets} clientId={client.id} />
-
             }
-
-
         </>
     );
 }
 
 export function ClientsTable() {
-    //    const { clients } = useGetClients();
     const { clients, loadingclient } = useContext(ClientsContext);
-
     const [open, setOpen] = useState(false);
 
     return (
@@ -81,9 +74,7 @@ export function ClientsTable() {
                             <TableCell><span className="font-semibold">Celular</span></TableCell>
                         </TableRow>
                     </TableHead>
-
                     {/* contenido */}
-
                     <TableBody>
                         {loadingclient ? (
                             Array.from(new Array(5)).map((_) => (
@@ -99,18 +90,13 @@ export function ClientsTable() {
                         )}
                     </TableBody>
                 </Table>
-
             </TableContainer>
-
             <button className="ml-auto mt-10 hover:cursor-pointer flex items-center space-x-2 bg-celeste-900 text-celeste-100 py-2 px-4 rounded-full"
                 onClick={() => setOpen(!open)}>
                 <PlusIcon className="h-5 w-5" />
                 <span>Agregar Cliente</span>
             </button>
-
             <FormAddClient open={open} handleClose={() => setOpen(false)} />
-
-
         </>
     );
 }

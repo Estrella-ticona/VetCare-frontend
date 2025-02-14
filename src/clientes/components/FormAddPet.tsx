@@ -6,10 +6,7 @@ import { useContext } from "react";
 import { ClientsContext } from "../contexts/clients-context";
 import { Client } from "../model/client";
 
-
 export function FormAddPet({ open, handleClose, clientId }: { open: boolean, clientId: number, handleClose: () => void }) {
-
-    /* TODO ESTO SE DEBE DE CAMBIAR A PET */
     const { clearPet, handleChangePet, pet, createPet, clients } = useContext(ClientsContext);
 
     const handleSubmit = async (e: any) => {
@@ -21,7 +18,6 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                 client.pets.push(pet);
             }
         });
-        /* pet.push(pet); */
 
         await createPet(clientId);
     }
@@ -29,7 +25,6 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
     return (
         <Dialog open={open} onClose={handleClose}>
             <div className="bg-celeste-200 text-white  p-8 w-full max-w-4xl shadow-lg" >
-
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         {/* grid grid-cols-2 gap-4 */}
@@ -46,7 +41,6 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                                 value={pet.name}
                                 onChange={(e) => handleChangePet("name", e.target.value)}
                             />
-
                             <TextField
                                 required
                                 id="outlined-required"
@@ -71,9 +65,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                                 value={pet.gender}
                                 onChange={(e) => handleChangePet("gender", e.target.value.toUpperCase())}
                             />
-
                         </Box>
-
                     </div>
                     <div className="flex items-center justify-end">
                         <div className="flex items-center space-x-2 bg-white text-celeste-900 py-2 px-4 rounded-full">

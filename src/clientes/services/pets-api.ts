@@ -8,13 +8,12 @@ export class PetsApi {
         return http.post(`${this.endpoint}`, data);
     }
 
-
     async createPet(pet: Pet) {
 
         return http.post(`${this.endpoint}/create`, pet);
     }
+
     async deletePet(pet: Pet) {
         return http.post(`${this.endpoint}/delete`, pet);
     }
-
 }

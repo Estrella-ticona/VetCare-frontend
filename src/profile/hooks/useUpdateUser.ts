@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "@/iam/model/user";
 import { UserApi } from "../services/user-api";
 
@@ -7,6 +7,10 @@ const api = new UserApi();
 export function useUpdateUser() {
     const [user, setUser] = useState<User>(new User());
     const [isEditing, setIsEditing] = useState<boolean>(false);
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     const handleChange = (name: keyof User, value: string) => {
         setUser((prevUser) => ({
@@ -34,6 +38,7 @@ export function useUpdateUser() {
         handleEditMode();
         await api.updateUser(user);
     }
+
     return {
         user,
         getUser,
@@ -42,5 +47,4 @@ export function useUpdateUser() {
         isEditing,
         handleEditMode
     }
-
 }
