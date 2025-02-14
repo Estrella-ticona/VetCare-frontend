@@ -2,14 +2,14 @@ import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Button, Dialog } from "@mui/material";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs from 'dayjs';
+import 'dayjs/locale/es-pr';
 import { useContext } from "react";
 import { ClientsContext } from "../contexts/clients-context";
 import { Client } from "../model/client";
-import dayjs, { Dayjs } from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import 'dayjs/locale/es-pr';
 
 export function FormAddPet({ open, handleClose, clientId }: { open: boolean, clientId: number, handleClose: () => void }) {
     const { clearPet, handleChangePet, pet, createPet, clients } = useContext(ClientsContext);
@@ -41,7 +41,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                             <TextField
                                 required
                                 id="outlined-required"
-                                label="Nombres completos"
+                                label="Nombre"
                                 className="bg-celeste-100"
                                 value={pet.name}
                                 onChange={(e) => handleChangePet("name", e.target.value)}
@@ -49,7 +49,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                             <TextField
                                 required
                                 id="outlined-required"
-                                label=" edad"
+                                label="Edad"
                                 className="bg-celeste-100"
                                 value={pet.age}
                                 onChange={(e) => handleChangePet("age", e.target.value)}
@@ -57,7 +57,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                             <TextField
                                 required
                                 id="outlined-required"
-                                label="especie"
+                                label="Especie"
                                 className="bg-celeste-100"
                                 value={pet.specie}
                                 onChange={(e) => handleChangePet("specie", e.target.value)}
@@ -65,7 +65,7 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                             <TextField
                                 required
                                 id="outlined-required"
-                                label="genero"
+                                label="Genero"
                                 className="bg-celeste-100"
                                 value={pet.gender}
                                 onChange={(e) => handleChangePet("gender", e.target.value.toUpperCase())}
@@ -93,12 +93,15 @@ export function FormAddPet({ open, handleClose, clientId }: { open: boolean, cli
                                 <DatePicker
                                     label="Fecha de Nacimiento"
                                     className="bg-celeste-100"
-                                    value={dayjs(pet.birthDate)}
-                                    onChange={(newDate) => handleChangePet("birthDate", newDate!!.format('DD-MM-YYYY'))}
+                                    value={pet.birthDate ? dayjs(pet.birthDate, "DD-MM-YYYY") : null}
+                                    onChange={(newDate) => {
+                                        if (newDate) {
+                                            handleChangePet("birthDate", newDate.format('DD-MM-YYYY'));
+                                        }
+                                    }}
                                     views={['year', 'month', 'day']}  // Permite seleccionar Año → Mes → Día
                                     format="DD/MM/YYYY"
                                 />
-                                {/*  onChange={(e) => handleChangePet("petBirthDate", e.target.value.toUpperCase())} */}
                             </LocalizationProvider>
 
                         </Box>
