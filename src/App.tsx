@@ -6,6 +6,7 @@ import { Register } from "./iam/components/Register"
 import { Profile } from "./profile/components/Profile"
 import { MainLayout } from "./public/pages/MainLayout"
 import { Historypage } from "./historial/page/Historypage"
+import { InventoryPage } from "./inventory/pages/InventoryPage"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/clientes" element={<ClientPage />} />
         <Route path="/citas" element={<AppointmentPage />} />
         <Route path="/historial" element={<Historypage />} />
+        <Route path="/inventory" element={<InventoryPage />} />
       </Route>
     </Routes >
   )

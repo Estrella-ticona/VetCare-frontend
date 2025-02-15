@@ -2,8 +2,8 @@ import { HomeIcon } from "@heroicons/react/24/solid";
 //arrow-right-end-on-rectangle
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
 import { Button } from "@mui/material";
-import { useLogOut } from "../../iam/hooks/useLogOut";
 import { Link } from "react-router";
+import { useLogOut } from "../../iam/hooks/useLogOut";
 export function Navbar() {
     const { handleLogOut } = useLogOut();
     return (
@@ -29,9 +29,9 @@ export function Navbar() {
                     <Link to="/historial" className="hover:underline">
                         Historial
                     </Link>
-                    <a href="#" className="hover:underline">
+                    <Link to="/inventory" className="hover:underline">
                         Inventario
-                    </a>
+                    </Link>
                     <a href="#" className="hover:underline">
                         Estadistica
                     </a>
